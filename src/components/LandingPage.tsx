@@ -53,24 +53,6 @@ export const LandingPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // TODO: These should come from API
-  const suggestedSkills = [
-    { name: 'React', level: 90, category: 'frontend' },
-    { name: 'TypeScript', level: 85, category: 'frontend' },
-    { name: 'Node.js', level: 82, category: 'backend' },
-    { name: 'Python', level: 78, category: 'backend' },
-  ];
-
-  const suggestedProjects = [
-    {
-      id: 1,
-      title: 'Portfolio Website',
-      description: 'Modern React portfolio with dark mode and internationalization.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS'],
-      githubUrl: '#', // TODO: Get from API
-      demoUrl: '#', // TODO: Get from API
-    },
-  ];
 
   const getCategoryColor = (category: string) => {
     switch (category) {
@@ -264,29 +246,11 @@ export const LandingPage = () => {
               </div>
             ) : null}
 
-            {/* Fallback skills if no API data */}
+            {/* No data message */}
             {!skillsLoading && (!skillsData || skillsData.length === 0) && (
-              <>
-                <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-8">
-                  💡 <strong>API Notice:</strong> Skills API integration ready - showing sample data
-                </div>
-                <div className="space-y-6">
-                  {suggestedSkills.map((skill) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-sm text-gray-500">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                        <div
-                          className={`h-3 rounded-full bg-gradient-to-r ${getCategoryColor(skill.category)}`}
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </>
+              <div className="text-center text-gray-600 dark:text-gray-400 py-8">
+                <p>No skills data available at the moment.</p>
+              </div>
             )}
           </div>
         </div>
@@ -371,52 +335,11 @@ export const LandingPage = () => {
               </div>
             ) : null}
 
-            {/* Fallback projects if no API data */}
+            {/* No data message */}
             {!projectsLoading && (!projectsData || projectsData.length === 0) && (
-              <>
-                <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-8">
-                  💡 <strong>API Notice:</strong> Projects API integration ready - showing sample data
-                </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {suggestedProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6"
-                >
-                  <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
-                  
-                  <div className="mb-6">
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    <a
-                      href={project.githubUrl}
-                      className="flex-1 px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-center rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-sm font-medium"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href={project.demoUrl}
-                      className="flex-1 px-4 py-2 bg-blue-600 text-white text-center rounded-lg hover:bg-blue-500 transition-colors text-sm font-medium"
-                    >
-                      Demo
-                    </a>
-                  </div>
-                </div>
-                  ))}
-                </div>
-              </>
+              <div className="text-center text-gray-600 dark:text-gray-400 py-8">
+                <p>No projects data available at the moment.</p>
+              </div>
             )}
           </div>
         </div>

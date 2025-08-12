@@ -1,69 +1,110 @@
-# React + TypeScript + Vite
+# Portfolio Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website built with React, TypeScript, and Vite. Features complete API integration, dark/light theme support, and multi-language capabilities.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Modern Tech Stack**: React 18, TypeScript, Vite, TailwindCSS
+- **API Integration**: Complete REST API integration using RTK Query
+- **Theme Support**: Dark/light mode with smooth transitions
+- **Internationalization**: Multi-language support (English/Spanish)
+- **Responsive Design**: Mobile-first approach with modern UI
+- **State Management**: Redux Toolkit with persistence
+- **Performance**: Optimized with lazy loading and caching
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React 18, TypeScript
+- **Styling**: TailwindCSS
+- **Build Tool**: Vite
+- **State Management**: Redux Toolkit + RTK Query
+- **Routing**: React Router DOM
+- **Persistence**: Redux Persist
+- **Linting**: ESLint + TypeScript ESLint
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd portfolio-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies
+```bash
+npm install
 ```
+
+3. Create environment file
+```bash
+cp .env.example .env.local
+```
+
+4. Update environment variables in `.env.local`:
+```env
+VITE_API_BASE_URL=http://your-api-url/api/v1
+VITE_APP_TITLE=Portfolio
+```
+
+5. Start development server
+```bash
+npm run dev
+```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint errors
+
+## Project Structure
+
+```
+src/
+├── components/          # React components
+├── hooks/              # Custom React hooks
+├── services/           # API services (RTK Query)
+├── store/              # Redux store configuration
+├── types/              # TypeScript type definitions
+├── utils/              # Utility functions
+├── locales/            # Translation files
+└── styles/             # Global styles
+```
+
+## API Integration
+
+The project uses RTK Query for API integration with the following endpoints:
+
+- **About**: Personal information and bio
+- **Skills**: Technical skills with categories
+- **Projects**: Portfolio projects with details
+- **Experience**: Work experience history
+- **Education**: Educational background
+- **Contact**: Contact information and message sending
+
+## Environment Variables
+
+- `VITE_API_BASE_URL` - Backend API base URL
+- `VITE_APP_TITLE` - Application title
+- `VITE_GOOGLE_CLIENT_ID` - Google OAuth client ID (optional)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run linting and tests
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.

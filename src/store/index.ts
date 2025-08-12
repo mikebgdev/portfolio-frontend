@@ -11,19 +11,17 @@ import {
 } from 'redux-persist';
 import themeReducer from './themeSlice';
 import languageReducer from './languageSlice';
-import authReducer from './authSlice';
 import { portfolioApi } from '../services/portfolioApi';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['theme', 'language', 'auth'],
+  whitelist: ['theme', 'language'],
 };
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   language: languageReducer,
-  auth: authReducer,
   [portfolioApi.reducerPath]: portfolioApi.reducer,
 });
 
