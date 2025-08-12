@@ -49,6 +49,7 @@ export interface Education {
   location: string;
   description?: string;
   courses?: string[];
+  gpa?: string;
 }
 
 export interface SocialLink {

@@ -3,11 +3,12 @@ import { useLanguage } from '../hooks/useLanguage';
 import { useTheme } from '../hooks/useTheme';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
-import { AdminPanel } from './AdminPanel';
 import {
   useGetAboutQuery,
   useGetSkillsQuery,
   useGetFeaturedProjectsQuery,
+  useGetExperienceQuery,
+  useGetEducationQuery,
   useSendContactMessageMutation,
 } from '../services/portfolioApi';
 
@@ -19,12 +20,12 @@ export const LandingPage = () => {
     email: '',
     message: '',
   });
-  const [showAdmin, setShowAdmin] = useState(false);
-
   // API Queries
   const { data: aboutData, error: aboutError, isLoading: aboutLoading } = useGetAboutQuery();
   const { data: skillsData, error: skillsError, isLoading: skillsLoading } = useGetSkillsQuery();
   const { data: projectsData, error: projectsError, isLoading: projectsLoading } = useGetFeaturedProjectsQuery();
+  const { data: experienceData, error: experienceError, isLoading: experienceLoading } = useGetExperienceQuery();
+  const { data: educationData, error: educationError, isLoading: educationLoading } = useGetEducationQuery();
   
   // Contact mutation
   const [sendMessage, { isLoading: sendingMessage }] = useSendContactMessageMutation();
@@ -44,9 +45,6 @@ export const LandingPage = () => {
     }
   };
 
-  if (showAdmin) {
-    return <AdminPanel />;
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -101,15 +99,15 @@ export const LandingPage = () => {
               <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 {t('navigation.projects')}
               </a>
+              <a href="#experience" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {t('navigation.experience')}
+              </a>
+              <a href="#education" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {t('navigation.education')}
+              </a>
               <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 {t('navigation.contact')}
               </a>
-              <button 
-                onClick={() => setShowAdmin(true)}
-                className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                {t('navigation.admin')}
-              </button>
             </div>
 
             <div className="flex items-center gap-3">
@@ -377,6 +375,128 @@ export const LandingPage = () => {
                   ))}
                 </div>
               </>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="section-padding bg-gray-50 dark:bg-gray-800">
+        <div className="container-responsive">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12">{t('experience.title')}</h2>
+            
+            {experienceLoading ? (
+              <div className="animate-pulse space-y-6">
+                {[1,2,3].map(i => (
+                  <div key={i} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-3 w-1/3"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-2 w-1/2"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-4 w-1/4"></div>
+                    <div className="space-y-2">
+                      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : experienceError ? (
+              <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-8">
+                💡 <strong>API Notice:</strong> Unable to load experience from API, showing sample data
+              </div>
+            ) : experienceData && experienceData.length > 0 ? (
+              <div className="space-y-6">
+                {experienceData.map((experience) => (
+                  <div key={experience.id} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+                          {experience.position}
+                        </h3>
+                        <h4 className="text-lg font-medium mb-2">{experience.company}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                          {experience.start_date} - {experience.end_date || 'Present'}
+                        </p>
+                      </div>
+                      {experience.location && (
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          📍 {experience.location}
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {experience.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-8">
+                💡 <strong>API Notice:</strong> Experience API integration ready - no data available
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="section-padding">
+        <div className="container-responsive">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12">{t('education.title')}</h2>
+            
+            {educationLoading ? (
+              <div className="animate-pulse space-y-6">
+                {[1,2].map(i => (
+                  <div key={i} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-3 w-1/3"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-2 w-1/2"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-4 w-1/4"></div>
+                    <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                  </div>
+                ))}
+              </div>
+            ) : educationError ? (
+              <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-8">
+                💡 <strong>API Notice:</strong> Unable to load education from API, showing sample data
+              </div>
+            ) : educationData && educationData.length > 0 ? (
+              <div className="space-y-6">
+                {educationData.map((education) => (
+                  <div key={education.id} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+                          {education.degree}
+                        </h3>
+                        <h4 className="text-lg font-medium mb-2">{education.institution}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                          {education.start_date} - {education.end_date || 'Present'}
+                        </p>
+                      </div>
+                      {education.location && (
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          📍 {education.location}
+                        </div>
+                      )}
+                    </div>
+                    {education.description && (
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {education.description}
+                      </p>
+                    )}
+                    {education.gpa && (
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                        GPA: {education.gpa}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-8">
+                💡 <strong>API Notice:</strong> Education API integration ready - no data available
+              </div>
             )}
           </div>
         </div>
