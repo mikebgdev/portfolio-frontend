@@ -49,8 +49,11 @@ cp .env.example .env.local
 
 4. Update environment variables in `.env.local`:
 ```env
-VITE_API_BASE_URL=http://your-api-url/api/v1
+# For development (uses Vite proxy to avoid CORS issues):
+VITE_API_BASE_URL=/api/v1
 VITE_APP_TITLE=Portfolio
+
+# Update vite.config.ts proxy target to match your backend URL
 ```
 
 5. Start development server
@@ -96,6 +99,24 @@ The project uses RTK Query for API integration with the following endpoints:
 - `VITE_API_BASE_URL` - Backend API base URL
 - `VITE_APP_TITLE` - Application title
 - `VITE_GOOGLE_CLIENT_ID` - Google OAuth client ID (optional)
+
+## CORS Configuration
+
+This project uses a Vite proxy in development to avoid CORS issues. The proxy is configured in `vite.config.ts`:
+
+```ts
+server: {
+  proxy: {
+    '/api': {
+      target: 'http://your-backend-url:8000',
+      changeOrigin: true,
+      secure: false,
+    },
+  },
+}
+```
+
+For production deployment, ensure your backend is configured to allow CORS requests from your frontend domain.
 
 ## Contributing
 
