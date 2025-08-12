@@ -171,14 +171,23 @@ export const LandingPage = () => {
                 <h3 className="text-2xl font-semibold text-blue-600 dark:text-blue-400">
                   Software Developer
                 </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {aboutData?.bio_en || 'Passionate developer with experience in modern web technologies, focused on creating efficient and user-friendly applications.'}
-                </p>
-                {aboutData?.extra_content_en && (
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {aboutData.extra_content_en}
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {aboutData?.bio_en ? 
+                      aboutData.bio_en.split('\r\n').map((paragraph, index) => (
+                        paragraph.trim() ? <span key={index} className="block mb-2">{paragraph}</span> : null
+                      ))
+                      : 'Passionate developer with experience in modern web technologies, focused on creating efficient and user-friendly applications.'
+                    }
                   </p>
-                )}
+                  {aboutData?.extra_content_en && (
+                    <div className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {aboutData.extra_content_en.split('\r\n').map((paragraph, index) => (
+                        paragraph.trim() ? <p key={index} className="mb-2">{paragraph}</p> : null
+                      ))}
+                    </div>
+                  )}
+                </div>
                 {aboutError && (
                   <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg">
                     💡 <strong>API Notice:</strong> About content is using fallback data - API integration ready
@@ -186,9 +195,25 @@ export const LandingPage = () => {
                 )}
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
-                <div className="w-48 h-48 mx-auto bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center text-6xl">
-                  👨‍💻
-                </div>
+                {aboutData?.photo_url ? (
+                  <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-blue-400 shadow-lg">
+                    <img 
+                      src={aboutData.photo_url} 
+                      alt={`${aboutData.name} ${aboutData.last_name}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-48 h-48 mx-auto bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center text-6xl">
+                    👨‍💻
+                  </div>
+                )}
+                
+                {aboutData?.location && (
+                  <div className="text-center mt-4 text-sm text-gray-600 dark:text-gray-400">
+                    📍 {aboutData.location}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -300,13 +325,15 @@ export const LandingPage = () => {
                     
                     <div className="mb-6">
                       <div className="flex flex-wrap gap-2">
-                        {project.technologies.split(', ').map((tech, index) => (
-                          <span
-                            key={index}
-                            className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium"
-                          >
-                            {tech.trim()}
-                          </span>
+                        {project.technologies.split(/[,;]/).map((tech, index) => (
+                          tech.trim() && (
+                            <span
+                              key={index}
+                              className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium"
+                            >
+                              {tech.trim()}
+                            </span>
+                          )
                         ))}
                       </div>
                     </div>
@@ -424,7 +451,7 @@ export const LandingPage = () => {
                         </h3>
                         <h4 className="text-lg font-medium mb-2">{experience.company}</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                          {new Date(experience.start_date).toLocaleDateString()} - {experience.end_date ? new Date(experience.end_date).toLocaleDateString() : 'Present'}
+                          {new Date(experience.start_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} - {experience.end_date ? new Date(experience.end_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : 'Present'}
                         </p>
                       </div>
                       {experience.location && (
@@ -433,9 +460,11 @@ export const LandingPage = () => {
                         </div>
                       )}
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {experience.description_en}
-                    </p>
+                    <div className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {experience.description_en.split('\r\n').map((paragraph, index) => (
+                        paragraph.trim() ? <p key={index} className="mb-2">{paragraph}</p> : null
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -485,7 +514,7 @@ export const LandingPage = () => {
                           </p>
                         )}
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                          {new Date(education.start_date).toLocaleDateString()} - {education.end_date ? new Date(education.end_date).toLocaleDateString() : 'Present'}
+                          {new Date(education.start_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} - {education.end_date ? new Date(education.end_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : 'Present'}
                         </p>
                       </div>
                       {education.location && (
@@ -495,9 +524,11 @@ export const LandingPage = () => {
                       )}
                     </div>
                     {education.description_en && (
-                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {education.description_en}
-                      </p>
+                      <div className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {education.description_en.split('\r\n').map((paragraph, index) => (
+                          paragraph.trim() ? <p key={index} className="mb-2">{paragraph}</p> : null
+                        ))}
+                      </div>
                     )}
                   </div>
                 ))}
@@ -684,10 +715,15 @@ export const LandingPage = () => {
       {/* Footer */}
       <footer className="bg-gray-900 dark:bg-black text-white py-8">
         <div className="container-responsive text-center">
-          <p>© 2024 Portfolio. Built with React, TypeScript & Tailwind CSS.</p>
-          <div className="text-sm text-amber-400 bg-amber-900/20 p-2 rounded mt-4 inline-block">
-            💡 Footer content should be configurable via API
-          </div>
+          <p>
+            © {new Date().getFullYear()} {aboutData ? `${aboutData.name} ${aboutData.last_name}` : 'Portfolio'}. 
+            Built with React, TypeScript & Tailwind CSS.
+          </p>
+          {aboutData?.location && (
+            <p className="text-sm text-gray-400 mt-2">
+              Based in {aboutData.location} • {aboutData.nationality_en}
+            </p>
+          )}
         </div>
       </footer>
     </div>
