@@ -26,20 +26,21 @@ export const useTheme = () => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const systemTheme: Theme = mediaQuery.matches ? 'dark' : 'light';
     
-    // Only set system theme if no theme is persisted
-    const persistedTheme = localStorage.getItem('persist:root');
-    if (!persistedTheme) {
+    // Check if we have persisted state
+    const persistedState = localStorage.getItem('persist:root');
+    if (!persistedState) {
+      // No persisted state, use system preference
       setCurrentTheme(systemTheme);
+    } else {
+      // We have persisted state, but let's ensure the DOM is updated
+      const root = document.documentElement;
+      if (theme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
     }
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      const newSystemTheme: Theme = e.matches ? 'dark' : 'light';
-      setCurrentTheme(newSystemTheme);
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [setCurrentTheme]);
+  }, []); // Only run once on mount
 
   return { theme, toggle, setTheme: setCurrentTheme };
 };

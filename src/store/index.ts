@@ -11,16 +11,20 @@ import {
 } from 'redux-persist';
 import themeReducer from './themeSlice';
 import languageReducer from './languageSlice';
+import authReducer from './authSlice';
+import { portfolioApi } from '../services/portfolioApi';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['theme', 'language'],
+  whitelist: ['theme', 'language', 'auth'],
 };
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   language: languageReducer,
+  auth: authReducer,
+  [portfolioApi.reducerPath]: portfolioApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -32,7 +36,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(portfolioApi.middleware),
 });
 
 export const persistor = persistStore(store);
