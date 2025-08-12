@@ -9,6 +9,7 @@ import {
   useGetFeaturedProjectsQuery,
   useGetExperienceQuery,
   useGetEducationQuery,
+  useGetContactQuery,
   useSendContactMessageMutation,
 } from '../services/portfolioApi';
 
@@ -26,6 +27,7 @@ export const LandingPage = () => {
   const { data: projectsData, error: projectsError, isLoading: projectsLoading } = useGetFeaturedProjectsQuery();
   const { data: experienceData, error: experienceError, isLoading: experienceLoading } = useGetExperienceQuery();
   const { data: educationData, error: educationError, isLoading: educationLoading } = useGetEducationQuery();
+  const { data: contactData, error: contactError } = useGetContactQuery();
   
   // Contact mutation
   const [sendMessage, { isLoading: sendingMessage }] = useSendContactMessageMutation();
@@ -130,10 +132,10 @@ export const LandingPage = () => {
             ) : (
               <>
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  {aboutData?.name || 'Full Stack Developer'}
+                  {aboutData ? `${aboutData.name} ${aboutData.last_name}` : 'Full Stack Developer'}
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto">
-                  {aboutData?.description || 'Building modern web applications with React, TypeScript, and cutting-edge technologies'}
+                  {aboutData?.bio_en || 'Building modern web applications with React, TypeScript, and cutting-edge technologies'}
                 </p>
                 {aboutError && (
                   <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-4">
@@ -167,11 +169,16 @@ export const LandingPage = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="text-left space-y-6">
                 <h3 className="text-2xl font-semibold text-blue-600 dark:text-blue-400">
-                  {aboutData?.profession || t('about.profession')}
+                  Software Developer
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {aboutData?.description || 'Passionate developer with experience in modern web technologies, focused on creating efficient and user-friendly applications.'}
+                  {aboutData?.bio_en || 'Passionate developer with experience in modern web technologies, focused on creating efficient and user-friendly applications.'}
                 </p>
+                {aboutData?.extra_content_en && (
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {aboutData.extra_content_en}
+                  </p>
+                )}
                 {aboutError && (
                   <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg">
                     💡 <strong>API Notice:</strong> About content is using fallback data - API integration ready
@@ -288,31 +295,33 @@ export const LandingPage = () => {
                     key={project.id}
                     className="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6"
                   >
-                    <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
+                    <h3 className="text-xl font-semibold mb-3">{project.title_en}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description_en}</p>
                     
                     <div className="mb-6">
                       <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech) => (
+                        {project.technologies.split(', ').map((tech, index) => (
                           <span
-                            key={tech}
+                            key={index}
                             className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium"
                           >
-                            {tech}
+                            {tech.trim()}
                           </span>
                         ))}
                       </div>
                     </div>
                     
                     <div className="flex gap-3">
-                      <a
-                        href={project.github_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-center rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-sm font-medium"
-                      >
-                        GitHub
-                      </a>
+                      {project.source_url && (
+                        <a
+                          href={project.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-center rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-sm font-medium"
+                        >
+                          GitHub
+                        </a>
+                      )}
                       {project.demo_url && (
                         <a
                           href={project.demo_url}
@@ -411,11 +420,11 @@ export const LandingPage = () => {
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                       <div>
                         <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
-                          {experience.position}
+                          {experience.position_en}
                         </h3>
                         <h4 className="text-lg font-medium mb-2">{experience.company}</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                          {experience.start_date} - {experience.end_date || 'Present'}
+                          {new Date(experience.start_date).toLocaleDateString()} - {experience.end_date ? new Date(experience.end_date).toLocaleDateString() : 'Present'}
                         </p>
                       </div>
                       {experience.location && (
@@ -425,7 +434,7 @@ export const LandingPage = () => {
                       )}
                     </div>
                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {experience.description}
+                      {experience.description_en}
                     </p>
                   </div>
                 ))}
@@ -467,11 +476,16 @@ export const LandingPage = () => {
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                       <div>
                         <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
-                          {education.degree}
+                          {education.degree_en}
                         </h3>
                         <h4 className="text-lg font-medium mb-2">{education.institution}</h4>
+                        {education.field_of_study_en && (
+                          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            {education.field_of_study_en}
+                          </p>
+                        )}
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                          {education.start_date} - {education.end_date || 'Present'}
+                          {new Date(education.start_date).toLocaleDateString()} - {education.end_date ? new Date(education.end_date).toLocaleDateString() : 'Present'}
                         </p>
                       </div>
                       {education.location && (
@@ -480,14 +494,9 @@ export const LandingPage = () => {
                         </div>
                       )}
                     </div>
-                    {education.description && (
+                    {education.description_en && (
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {education.description}
-                      </p>
-                    )}
-                    {education.gpa && (
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                        GPA: {education.gpa}
+                        {education.description_en}
                       </p>
                     )}
                   </div>
@@ -589,40 +598,82 @@ export const LandingPage = () => {
                     Get in Touch
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-6">
-                    I'm always interested in new opportunities and collaborations.
+                    {contactData?.contact_message_en || "I'm always interested in new opportunities and collaborations."}
                   </p>
                   
-                  <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-6">
-                    💡 <strong>Suggestion:</strong> Social links should come from API
-                  </div>
+                  {contactError && (
+                    <div className="text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg mb-6">
+                      💡 <strong>API Notice:</strong> Unable to load contact data from API, using fallback content
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-4">
-                  <a
-                    href="mailto:contact@example.com"
-                    className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
-                  >
-                    <span className="text-2xl">✉️</span>
-                    <div>
-                      <div className="font-medium">Email</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        contact@example.com
+                  {contactData?.email && (
+                    <a
+                      href={`mailto:${contactData.email}`}
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
+                    >
+                      <span className="text-2xl">✉️</span>
+                      <div>
+                        <div className="font-medium">Email</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          {contactData.email}
+                        </div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
+                  )}
                   
-                  <a
-                    href="#"
-                    className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
-                  >
-                    <span className="text-2xl">🐙</span>
-                    <div>
-                      <div className="font-medium">GitHub</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        github.com/username
+                  {contactData?.linkedin_url && (
+                    <a
+                      href={contactData.linkedin_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
+                    >
+                      <span className="text-2xl">👤</span>
+                      <div>
+                        <div className="font-medium">LinkedIn</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          Professional Profile
+                        </div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
+                  )}
+                  
+                  {contactData?.github_url && (
+                    <a
+                      href={contactData.github_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
+                    >
+                      <span className="text-2xl">🐙</span>
+                      <div>
+                        <div className="font-medium">GitHub</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          Open Source Projects
+                        </div>
+                      </div>
+                    </a>
+                  )}
+                  
+                  {contactData?.cv_file_url && (
+                    <a
+                      href={contactData.cv_file_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
+                    >
+                      <span className="text-2xl">📄</span>
+                      <div>
+                        <div className="font-medium">Download CV</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          PDF Resume
+                        </div>
+                      </div>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

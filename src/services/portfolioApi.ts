@@ -7,6 +7,7 @@ import type {
   Project,
   Experience,
   Education,
+  ContactData,
   SocialLink,
   ContactMessage,
   ContactResponse,
@@ -26,11 +27,11 @@ export const portfolioApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['About', 'Skills', 'Projects', 'Experience', 'Education', 'SocialLinks'],
+  tagTypes: ['About', 'Skills', 'Projects', 'Experience', 'Education', 'Contact', 'SocialLinks'],
   endpoints: (builder) => ({
     // About endpoints
     getAbout: builder.query<AboutData, void>({
-      query: () => 'about',
+      query: () => 'about/',
       providesTags: ['About'],
     }),
     updateAbout: builder.mutation<AboutData, Partial<AboutData>>({
@@ -44,7 +45,7 @@ export const portfolioApi = createApi({
 
     // Skills endpoints
     getSkills: builder.query<Skill[], void>({
-      query: () => 'skills',
+      query: () => 'skills/',
       providesTags: ['Skills'],
     }),
     createSkill: builder.mutation<Skill, Omit<Skill, 'id'>>({
@@ -73,11 +74,11 @@ export const portfolioApi = createApi({
 
     // Projects endpoints
     getProjects: builder.query<Project[], void>({
-      query: () => 'projects',
+      query: () => 'projects/',
       providesTags: ['Projects'],
     }),
     getFeaturedProjects: builder.query<Project[], void>({
-      query: () => 'projects?featured=true',
+      query: () => 'projects/',
       providesTags: ['Projects'],
     }),
     createProject: builder.mutation<Project, Omit<Project, 'id'>>({
@@ -106,7 +107,7 @@ export const portfolioApi = createApi({
 
     // Experience endpoints
     getExperience: builder.query<Experience[], void>({
-      query: () => 'experience',
+      query: () => 'experience/',
       providesTags: ['Experience'],
     }),
     createExperience: builder.mutation<Experience, Omit<Experience, 'id'>>({
@@ -135,7 +136,7 @@ export const portfolioApi = createApi({
 
     // Education endpoints
     getEducation: builder.query<Education[], void>({
-      query: () => 'education',
+      query: () => 'education/',
       providesTags: ['Education'],
     }),
     createEducation: builder.mutation<Education, Omit<Education, 'id'>>({
@@ -176,10 +177,14 @@ export const portfolioApi = createApi({
       invalidatesTags: ['SocialLinks'],
     }),
 
-    // Contact endpoint
+    // Contact endpoints
+    getContact: builder.query<ContactData, void>({
+      query: () => 'contact/',
+      providesTags: ['Contact'],
+    }),
     sendContactMessage: builder.mutation<ContactResponse, ContactMessage>({
       query: (message) => ({
-        url: 'contact',
+        url: 'contact/',
         method: 'POST',
         body: message,
       }),
@@ -227,6 +232,7 @@ export const {
   useUpdateSocialLinksMutation,
   
   // Contact
+  useGetContactQuery,
   useSendContactMessageMutation,
   
   // Health
