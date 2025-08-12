@@ -74,9 +74,11 @@ export const LandingPage = () => {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'frontend': return 'from-blue-500 to-cyan-500';
-      case 'backend': return 'from-green-500 to-emerald-500';
-      case 'database': return 'from-purple-500 to-pink-500';
+      case 'web_development': return 'from-blue-500 to-cyan-500';
+      case 'infrastructure': return 'from-green-500 to-emerald-500';
+      case 'tools': return 'from-purple-500 to-pink-500';
+      case 'interpersonal': return 'from-yellow-500 to-orange-500';
+      case 'learning': return 'from-indigo-500 to-purple-500';
       default: return 'from-gray-500 to-gray-600';
     }
   };
@@ -240,18 +242,22 @@ export const LandingPage = () => {
                 💡 <strong>API Notice:</strong> Unable to load skills from API, showing sample data
               </div>
             ) : skillsData && skillsData.length > 0 ? (
-              <div className="space-y-6">
-                {skillsData.filter(skill => skill.level).map((skill) => (
-                  <div key={skill.id} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.level}%</span>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {skillsData.filter(skill => skill.activa).map((skill) => (
+                  <div key={skill.id} className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium text-gray-900 dark:text-white">{skill.name}</span>
+                      {skill.is_in_progress && (
+                        <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full">
+                          Learning
+                        </span>
+                      )}
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                      <div
-                        className={`h-3 rounded-full bg-gradient-to-r ${getCategoryColor(skill.category || 'default')}`}
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
+                    <div className="flex items-center gap-2">
+                      <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${getCategoryColor(skill.category)}`}></div>
+                      <span className="text-sm text-gray-600 dark:text-gray-400 capitalize">
+                        {skill.category.replace('_', ' ')}
+                      </span>
                     </div>
                   </div>
                 ))}

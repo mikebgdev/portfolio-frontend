@@ -22,9 +22,11 @@ export interface AboutData {
 export interface Skill {
   id: number;
   name: string;
-  type: 'technical' | 'interpersonal';
-  level?: number;
-  category?: string;
+  category: string;
+  is_in_progress: boolean;
+  display_order: number;
+  activa: boolean;
+  created_at: string;
   language: string;
   available_languages: string[];
 }
