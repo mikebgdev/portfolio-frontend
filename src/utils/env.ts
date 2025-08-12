@@ -1,12 +1,11 @@
 interface EnvConfig {
   API_BASE_URL: string;
-  GOOGLE_CLIENT_ID: string;
+  GOOGLE_CLIENT_ID?: string;
   APP_TITLE: string;
 }
 
 const requiredEnvVars = [
   'VITE_API_BASE_URL',
-  'VITE_GOOGLE_CLIENT_ID',
   'VITE_APP_TITLE',
 ] as const;
 
