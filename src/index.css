@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary-light: #3b82f6;
+  --color-primary-dark: #60a5fa;
+  --color-bg-light: #ffffff;
+  --color-bg-dark: #111827;
+  --color-text-light: #111827;
+  --color-text-dark: #f9fafb;
+}
+
+@utility container-responsive {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+@utility section-padding {
+  @apply py-12 sm:py-16 lg:py-20;
+}
