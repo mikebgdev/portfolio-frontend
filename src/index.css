@@ -90,21 +90,14 @@
     @apply container mx-auto px-4 py-16;
   }
   
-  /* Prevent horizontal overflow only */
+  /* Prevent horizontal overflow globally */
+  * {
+    box-sizing: border-box;
+  }
+  
   #root {
     overflow-x: hidden;
     width: 100%;
-  }
-  
-  .container,
-  section {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-  
-  /* Fix section height issues */
-  section {
-    min-height: auto;
   }
 
   .skill-item {
