@@ -1,0 +1,65 @@
+{
+  "title": "Contacto",
+  "subtitle": "Envíame un mensaje",
+  "info_title": "Información de contacto",
+  "send_message": "Envíame un mensaje",
+  "contact_info": "Información de contacto",
+  "email": "Email",
+  "phone": "Teléfono", 
+  "location": "Ubicación",
+  "message_sent": "Mensaje enviado",
+  "message_sent_desc": "Tu mensaje ha sido enviado correctamente. Me pondré en contacto contigo pronto.",
+  "form": {
+    "name": "Tu nombre",
+    "email": "Tu email",
+    "subject": "Asunto",
+    "message": "Tu mensaje",
+    "send_button": "Enviar Mensaje",
+    "sending": "Enviando...",
+    "placeholders": {
+      "name": "Escribe tu nombre completo",
+      "email": "tu@email.com",
+      "subject": "¿En qué puedo ayudarte?",
+      "message": "Cuéntame sobre tu proyecto o consulta..."
+    }
+  },
+  "validation": {
+    "name_required": "El nombre es requerido",
+    "name_min": "El nombre debe tener al menos 2 caracteres",
+    "email_required": "El email es requerido",
+    "email_invalid": "Ingresa un email válido",
+    "subject_required": "El asunto es requerido",
+    "subject_min": "El asunto debe tener al menos 5 caracteres",
+    "message_required": "El mensaje es requerido",
+    "message_min": "El mensaje debe tener al menos 10 caracteres"
+  },
+  "messages": {
+    "success": "Mensaje enviado",
+    "success_desc": "Tu mensaje ha sido enviado correctamente. Me pondré en contacto contigo pronto.",
+    "error": "Error al enviar",
+    "error_desc": "Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo."
+  },
+  "info": {
+    "email": "Email",
+    "phone": "Teléfono",
+    "location": "Ubicación",
+    "response_time": "Tiempo de respuesta",
+    "business_hours": "Horario de atención"
+  },
+  "social": {
+    "title": "Sígueme en",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "instagram": "Instagram"
+  },
+  "cta": {
+    "title": "¿Tienes un proyecto en mente?",
+    "description": "Estoy siempre abierto a discutir nuevas oportunidades y proyectos interesantes. No dudes en contactarme para hablar sobre cómo puedo ayudarte."
+  },
+  "availability": {
+    "available": "Disponible para nuevos proyectos",
+    "busy": "Ocupado con proyectos actuales",
+    "unavailable": "No disponible temporalmente"
+  }
+}

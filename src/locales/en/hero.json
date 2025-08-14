@@ -1,0 +1,10 @@
+{
+  "greeting": "Hi, I'm",
+  "name": "Your Name",
+  "subtitle": "Full-Stack Developer with experience in creating modern and attractive web applications.",
+  "cta": {
+    "contact": "Contact Me",
+    "about": "More about me"
+  },
+  "scroll_indicator": "Scroll to explore"
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Formación Académica",
+  "degree": "Título",
+  "institution": "Institución",
+  "field_of_study": "Campo de Estudio",
+  "gpa": "Promedio",
+  "coursework": "Cursos Relevantes",
+  "achievements": "Logros",
+  "certificate": "Certificado",
+  "ongoing": "En Curso",
+  "completed": "Completado",
+  "education1": {
+    "degree": "Máster en Ingeniería Informática",
+    "institution": "Universidad Politécnica",
+    "location": "Madrid, España",
+    "period": "2014 - 2016",
+    "description": "Especialización en Desarrollo de Software y Sistemas Distribuidos. Proyecto final sobre sistemas de recomendación basados en machine learning."
+  },
+  "education2": {
+    "degree": "Grado en Ingeniería del Software",
+    "institution": "Universidad de Tecnología",
+    "location": "Barcelona, España",
+    "period": "2010 - 2014",
+    "description": "Formación completa en fundamentos de programación, algoritmos, bases de datos y desarrollo de aplicaciones."
+  },
+  "education3": {
+    "degree": "Certificación en Desarrollo Web Full-Stack",
+    "institution": "Tech Academy",
+    "location": "Online",
+    "period": "2020",
+    "description": "Formación intensiva en desarrollo web moderno con React, Node.js, y bases de datos NoSQL."
+  },
+  "types": {
+    "degree": "Título Universitario",
+    "certification": "Certificación",
+    "course": "Curso",
+    "bootcamp": "Bootcamp",
+    "self_taught": "Autodidacta"
+  },
+  "levels": {
+    "high_school": "Bachillerato",
+    "associate": "Técnico Superior",
+    "bachelor": "Licenciatura",
+    "master": "Máster",
+    "doctorate": "Doctorado",
+    "certificate": "Certificado",
+    "diploma": "Diploma"
+  },
+  "view_certificate": "Ver Certificado",
+  "institution_website": "Sitio web de la institución",
+  "no_education": "No hay formación registrada",
+  "download_certificate": "Descargar Certificado"
+}

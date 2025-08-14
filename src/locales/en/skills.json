@@ -1,0 +1,46 @@
+{
+  "title": "Skills",
+  "categories": {
+    "web": "Web Development",
+    "tools": "Tools",
+    "server": "Servers",
+    "database": "Databases",
+    "soft": "Soft Skills"
+  },
+  "skills": {
+    "html5": "HTML5",
+    "css3": "CSS3",
+    "javascript": "JavaScript",
+    "typescript": "TypeScript",
+    "react": "React",
+    "vue": "Vue.js",
+    "nodejs": "Node.js",
+    "php_symfony": "PHP/Symfony",
+    "git": "Git",
+    "docker": "Docker",
+    "vscode": "VS Code",
+    "figma": "Figma",
+    "postman": "Postman",
+    "npm_yarn": "npm/yarn",
+    "apache": "Apache",
+    "nginx": "Nginx",
+    "aws": "AWS",
+    "linux": "Linux",
+    "mysql": "MySQL",
+    "postgresql": "PostgreSQL",
+    "mongodb": "MongoDB",
+    "redis": "Redis",
+    "teamwork": "Teamwork",
+    "communication": "Communication",
+    "problem_solving": "Problem Solving",
+    "adaptability": "Adaptability"
+  },
+  "level": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "expert": "Expert"
+  },
+  "years": "years",
+  "experience": "experience"
+}

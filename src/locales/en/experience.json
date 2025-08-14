@@ -1,0 +1,74 @@
+{
+  "title": "Professional Experience",
+  "current": "Current",
+  "present": "Present",
+  "duration": "Duration",
+  "responsibilities": "Responsibilities",
+  "achievements": "Achievements",
+  "technologies": "Technologies",
+  "company_website": "Company website",
+  "experience1": {
+    "title": "Senior Full Stack Developer",
+    "company": "Tech Solutions Inc.",
+    "location": "Madrid, Spain",
+    "period": "January 2021 - Present",
+    "description": [
+      "Develop and maintain web applications using React, Node.js and MongoDB.",
+      "Implementation of microservices architecture and CI/CD to improve scalability.",
+      "Leadership of a team of 5 developers and mentoring junior developers.",
+      "Performance optimization that resulted in a 40% improvement in page load times."
+    ]
+  },
+  "experience2": {
+    "title": "Web Developer",
+    "company": "Digital Agency",
+    "location": "Barcelona, Spain",
+    "period": "March 2018 - December 2020",
+    "description": [
+      "Development of websites and applications for clients from various sectors.",
+      "Implementation of e-commerce solutions using Symfony and PHP.",
+      "Collaboration with UX/UI designers to implement attractive and functional interfaces.",
+      "Database optimization and SQL queries to improve performance."
+    ]
+  },
+  "experience3": {
+    "title": "Junior Developer",
+    "company": "StartUp Tech",
+    "location": "Valencia, Spain",
+    "period": "June 2016 - February 2018",
+    "description": [
+      "Frontend development using HTML, CSS and JavaScript.",
+      "Contribution to the development of a hybrid mobile application with Ionic.",
+      "Implementation of unit and integration tests.",
+      "Bug fixes and performance improvements in existing applications."
+    ]
+  },
+  "employment_types": {
+    "full_time": "Full Time",
+    "part_time": "Part Time",
+    "contract": "Contract",
+    "internship": "Internship",
+    "freelance": "Freelance"
+  },
+  "months": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  },
+  "duration_format": {
+    "years": "year||years",
+    "months": "month||months",
+    "and": "and"
+  },
+  "no_experience": "No experience recorded",
+  "total_experience": "Total experience"
+}

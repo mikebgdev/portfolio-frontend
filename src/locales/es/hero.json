@@ -1,0 +1,10 @@
+{
+  "greeting": "Hola, soy",
+  "name": "Tu Nombre",
+  "subtitle": "Desarrollador Full-Stack con experiencia en crear aplicaciones web modernas y atractivas.",
+  "cta": {
+    "contact": "Contáctame",
+    "about": "Más sobre mí"
+  },
+  "scroll_indicator": "Desplázate para explorar"
+}

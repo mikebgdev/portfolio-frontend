@@ -1,0 +1,18 @@
+{
+  "brand": "Portfolio",
+  "home": "Home",
+  "about": "About",
+  "skills": "Skills",
+  "projects": "Projects",
+  "experience": "Experience",
+  "education": "Education",
+  "contact": "Contact",
+  "admin": "Admin",
+  "logout": "Logout",
+  "language": "Language",
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "toggle": "Toggle theme"
+  }
+}
