@@ -78,13 +78,17 @@ const Projects = () => {
                     <h2 className="section-heading pb-3 mb-12">{t('title', 'Proyectos')}</h2>
                 </FadeInWhenVisible>
 
-                <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {projects.map((project, index) => (
-                        <motion.div
+                        <FadeInWhenVisible 
                             key={index}
-                            whileHover={{y: -5}}
-                            transition={{duration: 0.2}}
+                            delay={index * 0.1}
+                            duration={0.4}
                         >
+                            <motion.div
+                                whileHover={{y: -5}}
+                                transition={{duration: 0.2}}
+                            >
                             <Card className="project-card overflow-hidden h-full flex flex-col">
                                 <div className="h-48 overflow-hidde">
                                     <motion.img
@@ -152,9 +156,10 @@ const Projects = () => {
                                     )}
                                 </CardFooter>
                             </Card>
-                        </motion.div>
+                            </motion.div>
+                        </FadeInWhenVisible>
                     ))}
-                </StaggerContainer>
+                </div>
             </div>
         </section>
     );

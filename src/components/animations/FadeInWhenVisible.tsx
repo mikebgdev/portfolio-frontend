@@ -36,7 +36,7 @@ const FadeInWhenVisible = ({
         x: 0, 
         y: 0 
       }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ 
         duration,
         delay,
