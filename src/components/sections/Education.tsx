@@ -43,14 +43,13 @@ const Education = () => {
   const educationItems = fallbackEducation;
 
   return (
-    <section id="education" className="py-16 lg:py-20 bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4">
+      <section id="education" className="py-20 bg-white dark:bg-slate-900">
+        <div className="container mx-auto px-4">
         <FadeInWhenVisible delay={0.1}>
           <h2 className="section-heading pb-3 mb-12">{t('title', 'Formación Académica')}</h2>
         </FadeInWhenVisible>
-        
-        <div className="relative border-l-4 border-secondary ml-6 md:ml-0 pl-8 space-y-10">
-          <StaggerContainer>
+
+          <div className="relative border-l-4 border-secondary ml-6 md:ml-0 pl-6 space-y-12">
             {educationItems.map((item, index) => (
               <StaggerItem key={index}>
                 <motion.div 
@@ -59,35 +58,32 @@ const Education = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div 
-                    className="absolute -left-[34px] p-2 bg-secondary rounded-full"
+                    className="absolute -left-[42px] p-2 bg-secondary rounded-full"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
                     <GraduationCap className="h-4 w-4 text-white" />
                   </motion.div>
-                  
-                  <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-slate-700">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+
+                  <div className="bg-gray-50 dark:bg-slate-700 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                    <h3 className="text-xl font-bold">
                       {item.degree}
                     </h3>
-                    <p className="text-lg text-secondary font-medium">
-                      {item.institution}
-                    </p>
-                  </div>
-                  
-                  <div className="flex flex-col md:items-end mt-2 md:mt-0 text-sm text-gray-600 dark:text-gray-300">
-                    <div className="flex items-center gap-1 mb-1">
-                      <Calendar className="h-4 w-4" />
-                      <span>{item.period}</span>
+                      <div className="text-secondary font-medium flex items-center mt-2 md:mt-0">
+                        <Calendar className="h-4 w-4 mr-1" />
+                        {item.period}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <MapPin className="h-4 w-4" />
-                      <span>{item.location}</span>
+
+                    <div className="mb-4 flex items-center text-gray-600 dark:text-gray-300">
+                      <span className="font-medium">{item.institution}</span>
+                      <span className="mx-2">•</span>
+                      <span className="flex items-center">
+                    <MapPin className="h-4 w-4 mr-1" />
+                        {item.location}
+                  </span>
                     </div>
-                  </div>
-                </div>
                 
                     <motion.p 
                       className="text-gray-700 dark:text-gray-300 leading-relaxed"
@@ -102,7 +98,6 @@ const Education = () => {
                 </motion.div>
               </StaggerItem>
             ))}
-          </StaggerContainer>
         </div>
       </div>
     </section>

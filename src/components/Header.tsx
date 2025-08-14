@@ -79,7 +79,7 @@ const Header = ({ toggleDarkMode, isDarkMode }: HeaderProps) => {
                 >
                   {link.name}
                   {activeSection === link.id && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary rounded-full"></span>
+                      <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary rounded-full"></span>
                   )}
                 </a>
               </li>

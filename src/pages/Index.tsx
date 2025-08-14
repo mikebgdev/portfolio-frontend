@@ -52,17 +52,6 @@ const Index = () => {
 
       <Footer />
       <BackToTop />
-
-      {/*<style>{`*/}
-      {/*  .bg-pattern {*/}
-      {/*    background-color: var(--background);*/}
-      {/*  }*/}
-      {/*  */}
-      {/*  .bg-grid-pattern {*/}
-      {/*    background-image: radial-gradient(currentColor 1px, transparent 1px);*/}
-      {/*    background-size: 30px 30px;*/}
-      {/*  }*/}
-      {/*`}</style>*/}
     </div>
   );
 };

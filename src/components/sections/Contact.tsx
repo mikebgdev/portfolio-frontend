@@ -66,110 +66,36 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 lg:py-20 bg-slate-50 dark:bg-slate-800">
-      <div className="container mx-auto px-4">
+      <section id="contact" className="py-20 bg-gray-50 dark:bg-slate-800">
+        <div className="container mx-auto px-4">
         <FadeInWhenVisible delay={0.1}>
           <h2 className="section-heading pb-3 mb-12">{t('title', 'Contacto')}</h2>
         </FadeInWhenVisible>
-        
-        <div className="grid lg:grid-cols-2 gap-12">
-          <FadeInWhenVisible delay={0.2} direction="right">
-            <div>
-            <h3 className="text-2xl font-semibold mb-6">{t('send_message', 'Envíame un mensaje')}</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder={t('form.name', 'Tu nombre')}
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full"
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder={t('form.email', 'Tu email')}
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <Input
-                  type="text"
-                  name="subject"
-                  placeholder={t('form.subject', 'Asunto')}
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full"
-                />
-              </div>
-              
-              <div>
-                <Textarea
-                  name="message"
-                  placeholder={t('form.message', 'Tu mensaje')}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full resize-none"
-                />
-              </div>
-              
-              <Button 
-                type="submit" 
-                disabled={isLoading}
-                className="w-full sm:w-auto rounded-full font-medium"
-                size="lg"
-              >
-                {isLoading ? (
-                  t('form.sending', 'Enviando...')
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" />
-                    {t('form.send_button', 'Enviar Mensaje')}
-                  </>
-                )}
-              </Button>
-            </form>
-            </div>
-          </FadeInWhenVisible>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           <FadeInWhenVisible delay={0.3} direction="left">
-            <div>
+            <div   className="lg:col-span-1 space-y-8">
             <h3 className="text-2xl font-semibold mb-6">{t('contact_info', 'Información de contacto')}</h3>
-            
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className="p-3 bg-white dark:bg-slate-700 rounded-lg shadow-sm">
-                    {info.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 dark:text-white">{info.title}</h4>
-                    {info.link && info.link !== "#" ? (
-                      <a 
-                        href={info.link}
-                        className="text-gray-600 dark:text-gray-300 hover:text-secondary transition-colors"
+
+              <div className="space-y-6">
+              {contactInfo.map((item, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className="p-3 rounded-full bg-white dark:bg-slate-700 shadow-md mr-4">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium mb-1">{item.title}</h3>
+                      <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary transition-colors"
                       >
-                        {info.value}
+                        {item.value}
                       </a>
-                    ) : (
-                      <p className="text-gray-600 dark:text-gray-300">{info.value}</p>
-                    )}
+                    </div>
                   </div>
-                </div>
               ))}
             </div>
             
@@ -181,6 +107,78 @@ const Contact = () => {
             </div>
             </div>
           </FadeInWhenVisible>
+            <FadeInWhenVisible delay={0.2} direction="left">
+              <div  className="lg:col-span-2 bg-white dark:bg-slate-700 p-8 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold mb-6">{t('send_message', 'Envíame un mensaje')}</h3>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Input
+                          type="text"
+                          name="name"
+                          placeholder={t('form.name', 'Tu nombre')}
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="w-full"
+                      />
+                    </div>
+                    <div>
+                      <Input
+                          type="email"
+                          name="email"
+                          placeholder={t('form.email', 'Tu email')}
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="w-full"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Input
+                        type="text"
+                        name="subject"
+                        placeholder={t('form.subject', 'Asunto')}
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="w-full"
+                    />
+                  </div>
+
+                  <div>
+                    <Textarea
+                        name="message"
+                        placeholder={t('form.message', 'Tu mensaje')}
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={6}
+                        className="w-full resize-none"
+                    />
+                  </div>
+
+                  <Button
+                      type="submit"
+                      disabled={isLoading}
+                      className="w-full sm:w-auto rounded-full font-medium"
+                      size="lg"
+                  >
+                    {isLoading ? (
+                        t('form.sending', 'Enviando...')
+                    ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4" />
+                          {t('form.send_button', 'Enviar Mensaje')}
+                        </>
+                    )}
+                  </Button>
+                </form>
+              </div>
+            </FadeInWhenVisible>
         </div>
       </div>
     </section>

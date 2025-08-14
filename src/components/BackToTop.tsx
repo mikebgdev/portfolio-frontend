@@ -29,7 +29,7 @@ const BackToTop = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed bottom-8 right-8 z-50"
+          className="fixed"
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
