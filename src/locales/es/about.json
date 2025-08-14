@@ -1,0 +1,16 @@
+{
+  "title": "Sobre Mí",
+  "name": "Tu Nombre",
+  "job_title": "Desarrollador de Software",
+  "description": [
+    "Soy un desarrollador de software con más de X años de experiencia en el desarrollo de aplicaciones web modernas.",
+    "Me especializo en el desarrollo full-stack utilizando tecnologías como React, Node.js y bases de datos SQL/NoSQL.",
+    "Mi pasión es crear software que no solo resuelva problemas complejos sino que también ofrezca una experiencia de usuario excepcional."
+  ],
+  "download_cv": "Descargar CV",
+  "cv_not_available": "CV no disponible",
+  "cv_not_available_desc": "El enlace del CV no está configurado actualmente.",
+  "years_experience": "años de experiencia",
+  "projects_completed": "proyectos completados",
+  "technologies_mastered": "tecnologías dominadas"
+}

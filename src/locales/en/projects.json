@@ -1,0 +1,63 @@
+{
+  "title": "Projects",
+  "view_demo": "View Demo",
+  "view_code": "View Code",
+  "github_repo": "GitHub Repository",
+  "live_demo": "Live Demo",
+  "technologies_used": "Technologies used",
+  "project_details": "Project Details",
+  "project1": {
+    "title": "E-Commerce Platform",
+    "description": "A complete e-commerce platform built with React, Node.js and MongoDB. Includes product management, shopping cart, payment gateway and admin panel."
+  },
+  "project2": {
+    "title": "Task Management App",
+    "description": "Task management application with drag and drop functionality, customizable categories, reminders and productivity statistics."
+  },
+  "project3": {
+    "title": "Portfolio Website",
+    "description": "Personal portfolio website built with Symfony and React, with an admin panel to manage dynamic content and multilanguage support."
+  },
+  "project4": {
+    "title": "Weather Dashboard",
+    "description": "Weather dashboard with forecasts, interactive maps, custom alerts and historical weather data visualization."
+  },
+  "project5": {
+    "title": "Social Media Analytics",
+    "description": "Social media analysis tool that provides detailed metrics, trend tracking and automated report generation."
+  },
+  "project6": {
+    "title": "Cryptocurrency Tracker",
+    "description": "Application for tracking cryptocurrencies with price alerts, portfolio analysis, real-time charts and market news."
+  },
+  "buttons": {
+    "code": "Code",
+    "demo": "Demo"
+  },
+  "status": {
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "planned": "Planned"
+  },
+  "categories": {
+    "web": "Web Application",
+    "mobile": "Mobile Application",
+    "desktop": "Desktop Application",
+    "api": "API/Backend",
+    "library": "Library",
+    "tool": "Tool"
+  },
+  "filters": {
+    "all": "All",
+    "featured": "Featured",
+    "recent": "Recent"
+  },
+  "sort": {
+    "date": "Date",
+    "name": "Name",
+    "category": "Category"
+  },
+  "no_projects": "No projects available",
+  "loading_projects": "Loading projects...",
+  "project_count": "project||projects"
+}

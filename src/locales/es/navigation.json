@@ -1,0 +1,18 @@
+{
+  "brand": "Portfolio",
+  "home": "Inicio",
+  "about": "Acerca de mí",
+  "skills": "Habilidades",
+  "projects": "Proyectos",
+  "experience": "Experiencia",
+  "education": "Formación",
+  "contact": "Contacto",
+  "admin": "Admin",
+  "logout": "Cerrar sesión",
+  "language": "Idioma",
+  "theme": {
+    "light": "Modo claro",
+    "dark": "Modo oscuro",
+    "toggle": "Cambiar tema"
+  }
+}

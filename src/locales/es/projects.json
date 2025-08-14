@@ -1,0 +1,63 @@
+{
+  "title": "Proyectos",
+  "view_demo": "Ver Demo",
+  "view_code": "Ver Código",
+  "github_repo": "Repositorio GitHub",
+  "live_demo": "Demo en Vivo",
+  "technologies_used": "Tecnologías utilizadas",
+  "project_details": "Detalles del Proyecto",
+  "project1": {
+    "title": "E-Commerce Platform",
+    "description": "Una plataforma completa de comercio electrónico construida con React, Node.js y MongoDB. Incluye gestión de productos, carrito de compras, pasarela de pago y panel de administración."
+  },
+  "project2": {
+    "title": "Task Management App",
+    "description": "Aplicación de gestión de tareas con funcionalidades de arrastrar y soltar, categorías personalizables, recordatorios y estadísticas de productividad."
+  },
+  "project3": {
+    "title": "Portfolio Website",
+    "description": "Sitio web de portafolio personal construido con Symfony y React, con un panel de administración para gestionar contenido dinámico y soporte multilenguaje."
+  },
+  "project4": {
+    "title": "Weather Dashboard",
+    "description": "Dashboard meteorológico con pronósticos, mapas interactivos, alertas personalizadas y visualización de datos históricos del clima."
+  },
+  "project5": {
+    "title": "Social Media Analytics",
+    "description": "Herramienta de análisis de redes sociales que proporciona métricas detalladas, seguimiento de tendencias y generación de reportes automatizados."
+  },
+  "project6": {
+    "title": "Cryptocurrency Tracker",
+    "description": "Aplicación para seguimiento de criptomonedas con alertas de precios, análisis de cartera, gráficos en tiempo real y noticias del mercado."
+  },
+  "buttons": {
+    "code": "Código",
+    "demo": "Demo"
+  },
+  "status": {
+    "completed": "Completado",
+    "in_progress": "En Progreso",
+    "planned": "Planificado"
+  },
+  "categories": {
+    "web": "Aplicación Web",
+    "mobile": "Aplicación Móvil",
+    "desktop": "Aplicación de Escritorio",
+    "api": "API/Backend",
+    "library": "Librería",
+    "tool": "Herramienta"
+  },
+  "filters": {
+    "all": "Todos",
+    "featured": "Destacados",
+    "recent": "Recientes"
+  },
+  "sort": {
+    "date": "Fecha",
+    "name": "Nombre",
+    "category": "Categoría"
+  },
+  "no_projects": "No hay proyectos disponibles",
+  "loading_projects": "Cargando proyectos...",
+  "project_count": "proyecto||proyectos"
+}

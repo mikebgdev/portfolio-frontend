@@ -1,0 +1,74 @@
+{
+  "title": "Experiencia Profesional",
+  "current": "Actual",
+  "present": "Presente",
+  "duration": "Duración",
+  "responsibilities": "Responsabilidades",
+  "achievements": "Logros",
+  "technologies": "Tecnologías",
+  "company_website": "Sitio web de la empresa",
+  "experience1": {
+    "title": "Senior Full Stack Developer",
+    "company": "Tech Solutions Inc.",
+    "location": "Madrid, España",
+    "period": "Enero 2021 - Presente",
+    "description": [
+      "Desarrollo y mantenimiento de aplicaciones web utilizando React, Node.js y MongoDB.",
+      "Implementación de arquitectura de microservicios y CI/CD para mejorar la escalabilidad.",
+      "Liderazgo de un equipo de 5 desarrolladores y mentoría a desarrolladores junior.",
+      "Optimización del rendimiento que resultó en una mejora del 40% en los tiempos de carga de la página."
+    ]
+  },
+  "experience2": {
+    "title": "Web Developer",
+    "company": "Digital Agency",
+    "location": "Barcelona, España",
+    "period": "Marzo 2018 - Diciembre 2020",
+    "description": [
+      "Desarrollo de sitios web y aplicaciones para clientes de diversos sectores.",
+      "Implementación de soluciones e-commerce usando Symfony y PHP.",
+      "Colaboración con diseñadores UX/UI para implementar interfaces atractivas y funcionales.",
+      "Optimización de bases de datos y consultas SQL para mejorar el rendimiento."
+    ]
+  },
+  "experience3": {
+    "title": "Junior Developer",
+    "company": "StartUp Tech",
+    "location": "Valencia, España",
+    "period": "Junio 2016 - Febrero 2018",
+    "description": [
+      "Desarrollo frontend utilizando HTML, CSS y JavaScript.",
+      "Contribución al desarrollo de una aplicación móvil híbrida con Ionic.",
+      "Implementación de pruebas unitarias y de integración.",
+      "Corrección de bugs y mejoras de rendimiento en aplicaciones existentes."
+    ]
+  },
+  "employment_types": {
+    "full_time": "Tiempo Completo",
+    "part_time": "Tiempo Parcial",
+    "contract": "Contrato",
+    "internship": "Prácticas",
+    "freelance": "Freelance"
+  },
+  "months": {
+    "january": "Enero",
+    "february": "Febrero",
+    "march": "Marzo",
+    "april": "Abril",
+    "may": "Mayo",
+    "june": "Junio",
+    "july": "Julio",
+    "august": "Agosto",
+    "september": "Septiembre",
+    "october": "Octubre",
+    "november": "Noviembre",
+    "december": "Diciembre"
+  },
+  "duration_format": {
+    "years": "año||años",
+    "months": "mes||meses",
+    "and": "y"
+  },
+  "no_experience": "No hay experiencia registrada",
+  "total_experience": "Experiencia total"
+}

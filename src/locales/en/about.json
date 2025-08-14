@@ -1,0 +1,16 @@
+{
+  "title": "About Me",
+  "name": "Your Name",
+  "job_title": "Software Developer",
+  "description": [
+    "I am a software developer with over X years of experience in developing modern web applications.",
+    "I specialize in full-stack development using technologies like React, Node.js, and SQL/NoSQL databases.",
+    "My passion is creating software that not only solves complex problems but also provides an exceptional user experience."
+  ],
+  "download_cv": "Download CV",
+  "cv_not_available": "CV not available",
+  "cv_not_available_desc": "The CV link is not currently configured.",
+  "years_experience": "years of experience",
+  "projects_completed": "projects completed",
+  "technologies_mastered": "technologies mastered"
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Education",
+  "degree": "Degree",
+  "institution": "Institution",
+  "field_of_study": "Field of Study",
+  "gpa": "GPA",
+  "coursework": "Relevant Coursework",
+  "achievements": "Achievements",
+  "certificate": "Certificate",
+  "ongoing": "Ongoing",
+  "completed": "Completed",
+  "education1": {
+    "degree": "Master's in Computer Engineering",
+    "institution": "Polytechnic University",
+    "location": "Madrid, Spain",
+    "period": "2014 - 2016",
+    "description": "Specialization in Software Development and Distributed Systems. Final project on machine learning-based recommendation systems."
+  },
+  "education2": {
+    "degree": "Bachelor's in Software Engineering",
+    "institution": "University of Technology",
+    "location": "Barcelona, Spain",
+    "period": "2010 - 2014",
+    "description": "Complete training in programming fundamentals, algorithms, databases and application development."
+  },
+  "education3": {
+    "degree": "Full-Stack Web Development Certification",
+    "institution": "Tech Academy",
+    "location": "Online",
+    "period": "2020",
+    "description": "Intensive training in modern web development with React, Node.js, and NoSQL databases."
+  },
+  "types": {
+    "degree": "University Degree",
+    "certification": "Certification",
+    "course": "Course",
+    "bootcamp": "Bootcamp",
+    "self_taught": "Self-taught"
+  },
+  "levels": {
+    "high_school": "High School",
+    "associate": "Associate Degree",
+    "bachelor": "Bachelor's Degree",
+    "master": "Master's Degree",
+    "doctorate": "Doctorate",
+    "certificate": "Certificate",
+    "diploma": "Diploma"
+  },
+  "view_certificate": "View Certificate",
+  "institution_website": "Institution website",
+  "no_education": "No education recorded",
+  "download_certificate": "Download Certificate"
+}

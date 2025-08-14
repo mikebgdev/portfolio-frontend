@@ -1,0 +1,65 @@
+{
+  "title": "Contact",
+  "subtitle": "Send me a message",
+  "info_title": "Contact information",
+  "send_message": "Send me a message",
+  "contact_info": "Contact information",
+  "email": "Email",
+  "phone": "Phone",
+  "location": "Location", 
+  "message_sent": "Message sent",
+  "message_sent_desc": "Your message has been sent successfully. I'll get back to you soon.",
+  "form": {
+    "name": "Your name",
+    "email": "Your email",
+    "subject": "Subject", 
+    "message": "Your message",
+    "send_button": "Send Message",
+    "sending": "Sending...",
+    "placeholders": {
+      "name": "Enter your full name",
+      "email": "your@email.com",
+      "subject": "How can I help you?",
+      "message": "Tell me about your project or inquiry..."
+    }
+  },
+  "validation": {
+    "name_required": "Name is required",
+    "name_min": "Name must be at least 2 characters",
+    "email_required": "Email is required",
+    "email_invalid": "Please enter a valid email",
+    "subject_required": "Subject is required",
+    "subject_min": "Subject must be at least 5 characters",
+    "message_required": "Message is required",
+    "message_min": "Message must be at least 10 characters"
+  },
+  "messages": {
+    "success": "Message sent",
+    "success_desc": "Your message has been sent successfully. I'll get back to you soon.",
+    "error": "Failed to send",
+    "error_desc": "There was a problem sending your message. Please try again."
+  },
+  "info": {
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "response_time": "Response time",
+    "business_hours": "Business hours"
+  },
+  "social": {
+    "title": "Follow me on",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "instagram": "Instagram"
+  },
+  "cta": {
+    "title": "Have a project in mind?",
+    "description": "I'm always open to discussing new opportunities and interesting projects. Don't hesitate to contact me to talk about how I can help you."
+  },
+  "availability": {
+    "available": "Available for new projects",
+    "busy": "Busy with current projects",
+    "unavailable": "Temporarily unavailable"
+  }
+}
