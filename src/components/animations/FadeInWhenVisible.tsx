@@ -16,11 +16,12 @@ const FadeInWhenVisible = ({
   direction = 'up',
   className = ''
 }: FadeInWhenVisibleProps) => {
+  // Reduced animations for mobile to prevent overflow
   const directionOffset = {
-    up: { y: 60, x: 0 },
-    down: { y: -60, x: 0 },
-    left: { y: 0, x: 60 },
-    right: { y: 0, x: -60 }
+    up: { y: 20, x: 0 },
+    down: { y: -20, x: 0 },
+    left: { y: 0, x: 15 },
+    right: { y: 0, x: -15 }
   };
 
   return (

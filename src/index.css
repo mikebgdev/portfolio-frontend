@@ -72,9 +72,14 @@
   * {
     @apply border-border;
   }
+  html {
+    overflow-x: hidden;
+  }
   body {
     @apply bg-background text-foreground font-poppins;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   .section-heading {
@@ -83,6 +88,18 @@
 
   .container-custom {
     @apply container mx-auto px-4 py-16;
+  }
+  
+  /* Prevent horizontal overflow */
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  .container,
+  section {
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   .skill-item {
