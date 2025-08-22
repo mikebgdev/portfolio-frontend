@@ -5,23 +5,51 @@ import { motion } from 'framer-motion';
 import FadeInWhenVisible from '@/components/animations/FadeInWhenVisible';
 import FloatingIcon from '@/components/animations/FloatingIcon';
 import SmoothScroll from '@/components/animations/SmoothScroll';
+import { useSharedAboutData } from '@/contexts/AboutContext';
 
 const Hero = () => {
   const { t } = useTranslation('hero');
+  const { heroData, loading, error } = useSharedAboutData();
+
+  // Show loading state
+  if (loading || !heroData) {
+    return (
+      <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+        <div className="container mx-auto px-4 z-10">
+          <div className="max-w-3xl">
+            <div className="flex justify-center items-center min-h-[400px]">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary mx-auto mb-4"></div>
+                <p className="text-gray-600 dark:text-gray-300">Loading hero data...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
       <div className="container mx-auto px-4 z-10">
         <div className="max-w-3xl">
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              <strong>Error loading hero data:</strong> {error}
+            </div>
+          )}
+          
           <FadeInWhenVisible delay={0.2} direction="up">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 fade-in">
-              {t('greeting')} <span className="text-secondary">{t('name')}</span>
+              {t('greeting')} <span className="text-secondary">{heroData.full_name}</span>
             </h1>
           </FadeInWhenVisible>
 
           <FadeInWhenVisible delay={0.4} direction="up">
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 fade-in">
-              {t('subtitle')}
+              {heroData.hero_description}
             </p>
           </FadeInWhenVisible>
 

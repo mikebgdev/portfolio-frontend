@@ -1,34 +1,48 @@
-import {useState, useEffect} from 'react';
 import {Download} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {useToast} from '@/hooks/use-toast';
 import {useTranslation} from 'react-i18next';
 import {motion} from 'framer-motion';
 import FadeInWhenVisible from '@/components/animations/FadeInWhenVisible';
+import { useSharedAboutData } from '@/contexts/AboutContext';
+import { useContact } from '@/hooks/useApi';
 
 const About = () => {
     const {t} = useTranslation('about');
     const {toast} = useToast();
+    const { aboutData, loading, error } = useSharedAboutData();
+    const { contactData } = useContact();
 
-    const fallbackData = {
-        full_name: t('name'),
-        title: t('job_title'),
-        image_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
-        description: t('description', {returnObjects: true}) as string[],
-        cv_url: "#"
-    };
+    // Return early if no data available yet
+    if (loading || !aboutData) {
+        return (
+            <section id="about" className="py-20 bg-white dark:bg-slate-900">
+                <div className="container mx-auto px-4">
+                    <div className="flex justify-center items-center min-h-[400px]">
+                        <div className="text-center">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary mx-auto mb-4"></div>
+                            <p className="text-gray-600 dark:text-gray-300">Loading profile data...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
-    const {
-        full_name = fallbackData.full_name,
-        title = fallbackData.title,
-        image_url = fallbackData.image_url,
-        description = fallbackData.description,
-        cv_url = fallbackData.cv_url
-    } = fallbackData;
+    const { full_name, title, image_url, description } = aboutData;
 
     const handleCVDownload = () => {
-        if (cv_url && cv_url !== "#") {
-            window.open(cv_url, '_blank');
+        if (contactData?.cv_data?.data) {
+            // Handle base64 CV data
+            const link = document.createElement('a');
+            link.href = contactData.cv_data.data;
+            link.download = contactData.cv_data.filename || 'CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else if (contactData?.cv_url && contactData.cv_url !== "#") {
+            // Handle CV URL
+            window.open(contactData.cv_url, '_blank');
         } else {
             toast({
                 title: t('cv_not_available'),
@@ -41,6 +55,11 @@ const About = () => {
     return (
         <section id="about" className="py-20 bg-white dark:bg-slate-900">
             <div className="container mx-auto px-4">
+                {error && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        <strong>Error loading profile data:</strong> {error}
+                    </div>
+                )}
                 <div className="flex flex-col md:flex-row gap-12 items-center">
                     <div className="w-full md:w-2/5 mb-8 md:mb-0">
                         <FadeInWhenVisible delay={0.2} direction="right">
@@ -74,11 +93,11 @@ const About = () => {
 
                         <FadeInWhenVisible delay={0.4} >
                             <div className="space-y-4 text-gray-600 dark:text-gray-300 mb-6">
-                                {Array.isArray(description) ? (
+                                {Array.isArray(description) && description.length > 0 ? (
                                     description.map((paragraph, index) => (
                                         <motion.p
                                             key={index}
-                                            className="leading-relaxed"
+                                            className="leading-relaxed mb-4"
                                             initial={{opacity: 0, y: 20}}
                                             whileInView={{opacity: 1, y: 0}}
                                             transition={{delay: 0.5 + index * 0.1}}
@@ -88,7 +107,9 @@ const About = () => {
                                         </motion.p>
                                     ))
                                 ) : (
-                                    <p className="leading-relaxed">{description}</p>
+                                    <p className="leading-relaxed">
+                                        No description available
+                                    </p>
                                 )}
                             </div>
                         </FadeInWhenVisible>

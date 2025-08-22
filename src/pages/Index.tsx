@@ -9,6 +9,8 @@ import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
+import { AboutProvider } from "@/contexts/AboutContext";
+import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -37,22 +39,25 @@ const Index = () => {
   };
 
   return (
-    <div className="bg-pattern min-h-screen">
-      <Header toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
-      
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
-        <Contact />
-      </main>
+    <AboutProvider>
+      <SEOHead />
+      <div className="bg-pattern min-h-screen">
+        <Header toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
+        
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Education />
+          <Contact />
+        </main>
 
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </AboutProvider>
   );
 };
 

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
+import { useSiteConfig } from '@/hooks/useApi';
 
 interface HeaderProps {
   toggleDarkMode: () => void;
@@ -14,6 +15,7 @@ const Header = ({ toggleDarkMode, isDarkMode }: HeaderProps) => {
   const { t } = useTranslation('navigation');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { siteConfig } = useSiteConfig();
   
   const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
   const activeSection = useScrollSpy(sectionIds, 80);
@@ -28,6 +30,7 @@ const Header = ({ toggleDarkMode, isDarkMode }: HeaderProps) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
 
   const handleSmoothScroll = (e: React.MouseEvent, targetId: string) => {
     e.preventDefault();
@@ -58,9 +61,16 @@ const Header = ({ toggleDarkMode, isDarkMode }: HeaderProps) => {
         <a 
           href="#home" 
           onClick={(e) => handleSmoothScroll(e, 'home')}
-          className="text-xl md:text-2xl font-bold text-primary"
+          className="flex items-center gap-2 text-xl md:text-2xl font-bold text-primary"
         >
-          {t('brand')}<span className="text-secondary">.</span>
+          {siteConfig?.favicon_data?.data && (
+            <img 
+              src={siteConfig.favicon_data.data} 
+              alt="Favicon" 
+              className="w-6 h-6 md:w-8 md:h-8"
+            />
+          )}
+          {siteConfig?.brand_name || t('brand')}<span className="text-secondary">.</span>
         </a>
 
         {/* Desktop Navigation */}
