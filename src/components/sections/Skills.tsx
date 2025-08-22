@@ -6,16 +6,8 @@ import {motion} from 'framer-motion';
 import FadeInWhenVisible from '@/components/animations/FadeInWhenVisible';
 import StaggerContainer from '@/components/animations/StaggerContainer';
 import { useSkills } from '@/hooks/useApi';
+import { toPascalCase, SKILL_COLORS } from '@/utils';
 
-// Helper function to log available icons (for debugging)
-const logAvailableIcons = () => {
-    const iconNames = Object.keys(LucideIcons).filter(key => 
-        typeof (LucideIcons as any)[key] === 'function' && 
-        key !== 'createLucideIcon' && 
-        key !== 'default'
-    );
-    return iconNames;
-};
 
 // Dynamic icon component that can render any Lucide React icon
 const getIconComponent = (iconName: string, color?: string | null) => {
@@ -29,15 +21,7 @@ const getIconComponent = (iconName: string, color?: string | null) => {
         ? { className: 'h-5 w-5', style: { color } }
         : { className: `h-5 w-5 ${color || 'text-gray-600'}` };
 
-    // Clean the icon name - handle different naming conventions
-    const toPascalCase = (str: string) => {
-        return str
-            .trim()
-            .split(/[-_\s]+/) // Split on hyphens, underscores, or spaces
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-            .join('');
-    };
-    
+    // Clean the icon name using utility function
     const cleanIconName = toPascalCase(iconName);
 
     // Try multiple variations of the icon name
@@ -69,16 +53,7 @@ const getIconComponent = (iconName: string, color?: string | null) => {
 
 // Default colors for skills when color is null
 const getDefaultSkillColor = (skillName: string) => {
-    const colorMap: { [key: string]: string } = {
-        'JavaScript': 'text-yellow-500',
-        'Python': 'text-blue-600',
-        'FastAPI': 'text-green-600',
-        'Git': 'text-orange-600',
-        'Docker': 'text-blue-600',
-        'Machine Learning': 'text-purple-600',
-        'Communication': 'text-blue-500',
-    };
-    return colorMap[skillName] || 'text-gray-600';
+    return SKILL_COLORS[skillName as keyof typeof SKILL_COLORS] || 'text-gray-600';
 };
 
 const Skills = () => {

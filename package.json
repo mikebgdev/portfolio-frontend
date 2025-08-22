@@ -1,20 +1,39 @@
 {
   "name": "portfolio-frontend",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
+  "description": "Modern and responsive personal portfolio built with React, TypeScript, and Tailwind CSS",
+  "author": "Michael Ballester Granero <michael@mikebgdev.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikebgdev/portfolio-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mikebgdev/portfolio-frontend/issues"
+  },
+  "homepage": "https://github.com/mikebgdev/portfolio-frontend#readme",
+  "keywords": [
+    "portfolio",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "vite",
+    "responsive",
+    "multilingual",
+    "api-integration",
+    "docker"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint '**/*.{js,jsx,mjs}'",
+    "lint:fix": "eslint '**/*.{js,jsx,mjs}' --fix",
     "preview": "vite preview",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "coverage": "vitest --coverage",
-    "docker:dev": "docker-compose up portfolio-dev",
-    "docker:build": "docker-compose build portfolio-frontend",
-    "docker:prod": "docker-compose up portfolio-frontend"
+    "coverage": "vitest --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -66,17 +85,22 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "jsdom": "^24.1.1",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",
-    "vite": "^7.1.2"
+    "vite": "^7.1.2",
+    "vitest": "^2.0.5"
   }
 }
