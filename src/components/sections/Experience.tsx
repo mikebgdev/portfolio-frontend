@@ -2,8 +2,8 @@ import { Calendar, MapPin, Briefcase } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import FadeInWhenVisible from '@/components/animations/FadeInWhenVisible';
-import StaggerContainer from '@/components/animations/StaggerContainer';
 import StaggerItem from '@/components/animations/StaggerItem';
+import { useExperience } from '@/hooks/useApi';
 
 interface ExperienceItem {
   title: string;
@@ -15,57 +15,39 @@ interface ExperienceItem {
 
 const Experience = () => {
   const { t } = useTranslation('experience');
+  const { experienceData, loading, error } = useExperience();
 
-  const fallbackExperiences: ExperienceItem[] = [
-    {
-      title: t('experience1.title', 'Senior Full Stack Developer'),
-      company: t('experience1.company', 'Tech Solutions Inc.'),
-      location: t('experience1.location', 'Madrid, España'),
-      period: t('experience1.period', 'Enero 2021 - Presente'),
-      description: [
-        "Desarrollo y mantenimiento de aplicaciones web utilizando React, Node.js y MongoDB.",
-        "Implementación de arquitectura de microservicios y CI/CD para mejorar la escalabilidad.",
-        "Liderazgo de un equipo de 5 desarrolladores y mentoría a desarrolladores junior.",
-        "Optimización del rendimiento que resultó en una mejora del 40% en los tiempos de carga de la página."
-      ]
-    },
-    {
-      title: t('experience2.title', 'Web Developer'),
-      company: t('experience2.company', 'Digital Agency'),
-      location: t('experience2.location', 'Barcelona, España'),
-      period: t('experience2.period', 'Marzo 2018 - Diciembre 2020'),
-      description: [
-        "Desarrollo de sitios web y aplicaciones para clientes de diversos sectores.",
-        "Implementación de soluciones e-commerce usando Symfony y PHP.",
-        "Colaboración con diseñadores UX/UI para implementar interfaces atractivas y funcionales.",
-        "Optimización de bases de datos y consultas SQL para mejorar el rendimiento."
-      ]
-    },
-    {
-      title: t('experience3.title', 'Junior Developer'),
-      company: t('experience3.company', 'StartUp Tech'),
-      location: t('experience3.location', 'Valencia, España'),
-      period: t('experience3.period', 'Junio 2016 - Febrero 2018'),
-      description: [
-        "Desarrollo frontend utilizando HTML, CSS y JavaScript.",
-        "Contribución al desarrollo de una aplicación móvil híbrida con Ionic.",
-        "Implementación de pruebas unitarias y de integración.",
-        "Corrección de bugs y mejoras de rendimiento en aplicaciones existentes."
-      ]
-    }
-  ];
-
-  const experiences = fallbackExperiences;
+  // Show loading state
+  if (loading || experienceData.length === 0) {
+    return (
+      <section id="experience" className="py-20 bg-gray-50 dark:bg-slate-800">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary mx-auto mb-4"></div>
+              <p className="text-gray-600 dark:text-gray-300">Loading experience...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
       <section id="experience" className="py-20 bg-gray-50 dark:bg-slate-800">
         <div className="container mx-auto px-4">
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <strong>Error loading experience:</strong> {error}
+          </div>
+        )}
+        
         <FadeInWhenVisible delay={0.1}>
-          <h2 className="section-heading pb-3 mb-12">{t('title', 'Experiencia Profesional')}</h2>
+          <h2 className="section-heading pb-3 mb-12">{t('title')}</h2>
         </FadeInWhenVisible>
 
           <div className="relative border-l-4 border-secondary ml-6 md:ml-0 pl-6 space-y-12">
-            {experiences.map((exp, index) => (
+            {experienceData.map((exp, index) => (
               <StaggerItem key={index}>
                 <motion.div
                   className="relative"
@@ -106,7 +88,7 @@ const Experience = () => {
                           transition={{ delay: itemIndex * 0.1 }}
                           viewport={{ once: true }}
                         >
-                          <span>{item}</span>
+                          {item}
                         </motion.li>
                       ))}
                     </ul>
