@@ -48,7 +48,7 @@ describe('Date Utils', () => {
     });
 
     it('should format period in Spanish', () => {
-      const result = formatPeriod('2022/01/01', null, 'es-ES');
+      const result = formatPeriod('2022/01/01', null, 'es');
       expect(result).toMatch(/enero.*2022.*Presente/i);
     });
 

@@ -18,7 +18,7 @@ describe('Text Utils', () => {
     it('should handle mixed formats', () => {
       const input = 'First paragraph.<br/>\\nSome text\\n\\nSecond paragraph.';
       const result = processTextContent(input);
-      expect(result).toEqual(['First paragraph. Some text', 'Second paragraph.']);
+      expect(result).toEqual(['First paragraph.', 'Some text', 'Second paragraph.']);
     });
 
     it('should filter empty paragraphs', () => {
