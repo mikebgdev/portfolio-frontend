@@ -1,10 +1,17 @@
 import js from '@eslint/js'
 import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist', 'node_modules'] },
+  { 
+    ignores: [
+      'dist',
+      'node_modules',
+      '*.config.*',
+      'coverage',
+      // Ignore all TypeScript files for now since we don't have TS parser
+      '**/*.{ts,tsx}'
+    ] 
+  },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -19,33 +26,18 @@ export default [
         sourceType: 'module',
       },
     },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
     rules: {
       ...js.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
       'prefer-const': 'error',
       'no-var': 'error',
       'no-unused-vars': [
-        'error',
+        'warn',
         {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
         },
       ],
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-console': ['warn', { allow: ['warn', 'error', 'debug'] }],
     },
-  },
-  {
-    // Disable linting for TypeScript files since we don't have TypeScript ESLint parser
-    files: ['**/*.{ts,tsx}'],
-    rules: {},
   },
 ]

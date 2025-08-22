@@ -89,7 +89,7 @@ src/
    
    Edit `.env` with your values:
    ```env
-   VITE_API_BASE_URL=http://localhost:8000
+   VITE_API_BASE_URL=http://192.168.10.192:8000
    VITE_ENVIRONMENT=development
    VITE_APP_NAME=Portfolio
    VITE_APP_VERSION=1.0.0
