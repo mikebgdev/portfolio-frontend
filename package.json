@@ -1,8 +1,30 @@
 {
   "name": "portfolio-frontend",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
+  "description": "Modern and responsive personal portfolio built with React, TypeScript, and Tailwind CSS",
+  "author": "Michael Ballester Granero <michael@mikebgdev.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikebgdev/portfolio-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mikebgdev/portfolio-frontend/issues"
+  },
+  "homepage": "https://github.com/mikebgdev/portfolio-frontend#readme",
+  "keywords": [
+    "portfolio",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "vite",
+    "responsive",
+    "multilingual",
+    "api-integration",
+    "docker"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,10 +33,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "coverage": "vitest --coverage",
-    "docker:dev": "docker-compose up portfolio-dev",
-    "docker:build": "docker-compose build portfolio-frontend",
-    "docker:prod": "docker-compose up portfolio-frontend"
+    "coverage": "vitest --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

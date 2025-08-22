@@ -1,93 +1,93 @@
 # Portfolio Frontend 🌟
 
-Un portfolio personal moderno y responsivo construido con React, TypeScript, y Tailwind CSS. Diseñado para ser completamente dinámico con integración de API backend.
+A modern and responsive personal portfolio built with React, TypeScript, and Tailwind CSS. Designed to be fully dynamic with backend API integration.
 
-## ✨ Características
+## ✨ Features
 
-- **🚀 Rendimiento Optimizado**: Construido con Vite para desarrollo rápido y builds eficientes
-- **🎨 Diseño Moderno**: Interfaz limpia y profesional con Tailwind CSS
-- **📱 Completamente Responsivo**: Adaptable a todos los tamaños de pantalla
-- **🌍 Multiidioma**: Soporte completo para español e inglés con react-i18next
-- **🔥 Animaciones Fluidas**: Transiciones suaves con Framer Motion
-- **🔌 Integración API**: Contenido completamente dinámico desde backend
-- **♿ Accesible**: Componentes diseñados siguiendo estándares de accesibilidad
-- **🎯 SEO Optimizado**: Meta tags dinámicos y estructura semántica
-- **📊 Iconos Dinámicos**: Sistema flexible de iconos con Lucide React
-- **🌙 Modo Oscuro**: Soporte completo para tema oscuro/claro
+- **🚀 Performance Optimized**: Built with Vite for fast development and efficient builds
+- **🎨 Modern Design**: Clean and professional interface with Tailwind CSS
+- **📱 Fully Responsive**: Adaptable to all screen sizes and devices
+- **🌍 Multilingual**: Complete support for Spanish and English with react-i18next
+- **🔥 Smooth Animations**: Fluid transitions with Framer Motion
+- **🔌 API Integration**: Fully dynamic content from backend API
+- **♿ Accessible**: Components designed following accessibility standards
+- **🎯 SEO Optimized**: Dynamic meta tags and semantic structure
+- **📊 Dynamic Icons**: Flexible icon system with Lucide React
+- **🌙 Dark Mode**: Complete dark/light theme support
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Technology Stack
 
 ### Frontend Core
-- **React 18.3.1** - Biblioteca de UI con hooks modernos
-- **TypeScript** - Tipado estático para mejor desarrollo
-- **Vite** - Build tool rápido y moderno
-- **Tailwind CSS** - Framework de CSS utility-first
+- **React 18.3.1** - UI library with modern hooks
+- **TypeScript** - Static typing for better development
+- **Vite** - Fast and modern build tool
+- **Tailwind CSS** - Utility-first CSS framework
 
 ### UI & UX
-- **Radix UI** - Componentes primitivos accesibles
-- **Framer Motion** - Animaciones y transiciones
-- **Lucide React** - Sistema de iconos consistente
-- **Sonner** - Notificaciones elegantes
+- **Radix UI** - Accessible primitive components
+- **Framer Motion** - Animations and transitions
+- **Lucide React** - Consistent icon system
+- **Sonner** - Elegant notifications
 
-### Internacionalización
-- **react-i18next** - Sistema completo de traducciones
-- **i18next-browser-languagedetector** - Detección automática de idioma
+### Internationalization
+- **react-i18next** - Complete translation system
+- **i18next-browser-languagedetector** - Automatic language detection
 
-### Estado y Datos
-- **React Context** - Gestión de estado global optimizada
-- **Custom Hooks** - Lógica reutilizable para API calls
-- **TanStack Query** - Cache y sincronización de datos del servidor
+### State and Data
+- **React Context** - Optimized global state management
+- **Custom Hooks** - Reusable logic for API calls
+- **TanStack Query** - Server data cache and synchronization
 
-### Desarrollo y Calidad
-- **ESLint** - Linting de código
-- **Vitest** - Testing unitario
-- **TypeScript** - Verificación de tipos
-- **Docker** - Containerización para deployment
+### Development and Quality
+- **ESLint** - Code linting
+- **Vitest** - Unit testing
+- **TypeScript** - Type checking
+- **Docker** - Containerization for deployment
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 src/
-├── components/          # Componentes React
-│   ├── ui/             # Componentes base reutilizables
-│   ├── sections/       # Secciones principales del portfolio
-│   └── animations/     # Componentes de animación
+├── components/          # React components
+│   ├── ui/             # Reusable base components
+│   ├── sections/       # Main portfolio sections
+│   └── animations/     # Animation components
 ├── hooks/              # Custom hooks
-├── contexts/           # Contextos de React
-├── services/           # Servicios de API
-├── types/              # Definiciones de TypeScript
-├── utils/              # Funciones utilitarias
-├── i18n/               # Configuración de internacionalización
-├── config/             # Configuraciones
-└── lib/                # Utilidades de librerías
+├── contexts/           # React contexts
+├── services/           # API services
+├── types/              # TypeScript definitions
+├── utils/              # Utility functions
+├── i18n/               # Internationalization config
+├── config/             # Configurations
+└── lib/                # Library utilities
 ```
 
-## 🚀 Inicio Rápido
+## 🚀 Quick Start
 
-### Prerrequisitos
+### Prerequisites
 
 - **Node.js** >= 18.0.0
 - **npm** >= 8.0.0
 
-### Instalación
+### Installation
 
-1. **Clonar el repositorio**
+1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/mikebgdev/portfolio-frontend.git
    cd portfolio-frontend
    ```
 
-2. **Instalar dependencias**
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Configurar variables de entorno**
+3. **Configure environment variables**
    ```bash
    cp .env.example .env
    ```
    
-   Editar `.env` con tus valores:
+   Edit `.env` with your values:
    ```env
    VITE_API_BASE_URL=http://localhost:8000
    VITE_ENVIRONMENT=development
@@ -95,32 +95,32 @@ src/
    VITE_APP_VERSION=1.0.0
    ```
 
-4. **Iniciar desarrollo**
+4. **Start development server**
    ```bash
    npm run dev
    ```
 
-   El servidor estará disponible en `http://localhost:3000`
+   Server will be available at `http://localhost:8080`
 
-## 📡 Integración con API
+## 📡 API Integration
 
-### Endpoints Utilizados
+### Required Endpoints
 
-El frontend consume los siguientes endpoints del backend:
+The frontend consumes the following backend endpoints:
 
-- `GET /api/v1/site-config/` - Configuración general del sitio
-- `GET /api/v1/about/` - Información personal y biografía  
-- `GET /api/v1/skills/` - Habilidades organizadas por categorías
-- `GET /api/v1/projects/` - Portafolio de proyectos
-- `GET /api/v1/experience/` - Experiencia laboral
-- `GET /api/v1/education/` - Educación académica
-- `GET /api/v1/contact/` - Información de contacto y redes sociales
+- `GET /api/v1/site-config/` - General site configuration
+- `GET /api/v1/about/` - Personal information and biography  
+- `GET /api/v1/skills/` - Skills organized by categories
+- `GET /api/v1/projects/` - Project portfolio
+- `GET /api/v1/experience/` - Work experience
+- `GET /api/v1/education/` - Academic education
+- `GET /api/v1/contact/` - Contact information and social networks
 
-### Formato de Datos
+### Data Format
 
-Todos los endpoints devuelven datos en formato JSON. Las imágenes y documentos se proporcionan en formato base64 a través del campo `*_data`.
+All endpoints return data in JSON format. Images and documents are provided in base64 format through the `*_data` field.
 
-Ejemplo de respuesta de proyecto:
+Example project response:
 ```json
 {
   "id": 1,
@@ -140,68 +140,58 @@ Ejemplo de respuesta de proyecto:
 }
 ```
 
-## 🏗️ Comandos Disponibles
+## 🏗️ Available Commands
 
-### Desarrollo
+### Development
 ```bash
-npm run dev          # Servidor de desarrollo
-npm run preview      # Preview de build de producción
+npm run dev          # Development server
+npm run preview      # Preview production build
 ```
 
-### Build y Testing
+### Build and Testing
 ```bash
-npm run build        # Build para producción
-npm run test         # Ejecutar tests
-npm run test:watch   # Tests en modo watch
-npm run coverage     # Generar reporte de cobertura
+npm run build        # Production build
+npm run test         # Run tests
+npm run test:watch   # Tests in watch mode
+npm run coverage     # Generate coverage report
 ```
 
-### Código y Calidad
+### Code Quality
 ```bash
-npm run lint         # Ejecutar ESLint
-npm run lint:fix     # Arreglar errores de lint automáticamente
+npm run lint         # Run ESLint
+npm run lint:fix     # Fix ESLint errors automatically
 ```
 
-### Docker
+## 🐳 Docker Deployment
+
+### Production Build
 ```bash
-npm run docker:dev   # Ejecutar en desarrollo con Docker
-npm run docker:build # Construir imagen de producción
-npm run docker:prod  # Ejecutar producción con Docker
-```
+# Build the image
+docker build -t portfolio-frontend .
 
-## 🐳 Deployment con Docker
-
-### Desarrollo
-```bash
-docker-compose up portfolio-dev
-```
-
-### Producción
-```bash
-# Build
-docker-compose build portfolio-frontend
-
-# Run
-docker-compose up portfolio-frontend
+# Run the container
+docker run -p 8080:8080 \
+  -e VITE_API_BASE_URL=https://your-api.com \
+  portfolio-frontend
 ```
 
 ### Coolify Deployment
-El proyecto incluye un `Dockerfile` optimizado para Coolify con las siguientes características:
-- Build multi-stage para imagen ligera
-- Nginx como servidor web
-- Configuración de seguridad optimizada
-- Health checks integrados
-- Usuario no-root para seguridad
+The project includes an optimized `Dockerfile` for Coolify with:
+- Multi-stage build for lightweight images
+- Nginx as web server
+- Optimized security configuration
+- Integrated health checks
+- Non-root user for security
 
-## 🌍 Internacionalización
+## 🌍 Internationalization
 
-El proyecto soporta múltiples idiomas con detección automática:
+The project supports multiple languages with automatic detection:
 
-### Idiomas Disponibles
-- 🇪🇸 **Español** (es)
-- 🇺🇸 **Inglés** (en)
+### Available Languages
+- 🇪🇸 **Spanish** (es)
+- 🇺🇸 **English** (en)
 
-### Archivos de Traducción
+### Translation Files
 ```
 src/i18n/locales/
 ├── es/
@@ -215,10 +205,10 @@ src/i18n/locales/
 │   ├── education.json
 │   └── contact.json
 └── en/
-    └── [mismos archivos]
+    └── [same files]
 ```
 
-### Uso en Componentes
+### Usage in Components
 ```tsx
 import { useTranslation } from 'react-i18next';
 
@@ -229,26 +219,26 @@ const Component = () => {
 };
 ```
 
-## 🎨 Componentes UI
+## 🎨 UI Components
 
-### Biblioteca de Componentes
-- **Button**: Botones con múltiples variantes
-- **Card**: Contenedores de contenido
-- **Badge**: Etiquetas y tags
-- **Input/Textarea**: Campos de formulario
-- **Tabs**: Navegación por pestañas
-- **Toast**: Notificaciones
+### Component Library
+- **Button**: Buttons with multiple variants
+- **Card**: Content containers
+- **Badge**: Labels and tags
+- **Input/Textarea**: Form fields
+- **Tabs**: Tab navigation
+- **Toast**: Notifications
 
-### Animaciones
-- **FadeInWhenVisible**: Aparece al entrar en viewport
-- **StaggerContainer/StaggerItem**: Animaciones secuenciales
-- **ScaleOnHover**: Escalado en hover
-- **TypewriterText**: Efecto de máquina de escribir
-- **FloatingIcon**: Iconos flotantes animados
+### Animations
+- **FadeInWhenVisible**: Appears when entering viewport
+- **StaggerContainer/StaggerItem**: Sequential animations
+- **ScaleOnHover**: Scale on hover
+- **TypewriterText**: Typewriter effect
+- **FloatingIcon**: Animated floating icons
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-### Variables de Entorno
+### Environment Variables
 ```env
 # API Configuration
 VITE_API_BASE_URL=http://localhost:8000
@@ -261,7 +251,7 @@ VITE_APP_NAME=Portfolio
 VITE_APP_VERSION=1.0.0
 ```
 
-### Configuración de API
+### API Configuration
 ```typescript
 // src/config/api.ts
 export const API_CONFIG = {
@@ -274,22 +264,22 @@ export const API_CONFIG = {
 
 ## 🧪 Testing
 
-### Ejecutar Tests
+### Running Tests
 ```bash
-# Tests únicos
+# Single run
 npm run test
 
 # Watch mode
 npm run test:watch
 
-# Con cobertura
+# With coverage
 npm run coverage
 ```
 
-### Estructura de Tests
-- **Utils**: Tests para funciones utilitarias
-- **Components**: Tests de componentes (configurado pero opcional)
-- **Hooks**: Tests de custom hooks (configurado pero opcional)
+### Test Structure
+- **Utils**: Tests for utility functions
+- **Components**: Component tests (configured but optional)
+- **Hooks**: Custom hooks tests (configured but optional)
 
 ### Coverage Goals
 - **Statements**: 80%
@@ -300,69 +290,73 @@ npm run coverage
 ## 🚀 CI/CD Pipeline
 
 ### GitHub Actions
-El proyecto incluye un pipeline completo con:
+The project includes a complete pipeline with:
 
-1. **Install**: Instalación de dependencias con cache
-2. **Lint**: Verificación de calidad de código
-3. **Build**: Construcción de la aplicación
-4. **Security**: Auditoría de seguridad
-5. **Test**: Ejecución de tests (cuando existan)
-6. **Deploy**: Deployment automático en main branch
+1. **Lint**: Code quality verification
+2. **Build**: Application build
+3. **Security**: Security audit
+4. **Test**: Test execution (when implemented)
+5. **Deploy**: Automatic deployment on main branch
 
 ### Workflow Triggers
-- **Push** a `main` y `develop`
-- **Pull Request** hacia `main`
+- **Push** to `main` and `develop`
+- **Pull Request** to `main`
 
-## 🔒 Seguridad
+## 🔒 Security
 
-### Medidas Implementadas
-- **Headers de Seguridad**: CSP, X-Frame-Options, etc.
-- **Auditoría de Dependencias**: npm audit en CI/CD
-- **Análisis de Código**: njsscan para vulnerabilidades
-- **Variables de Entorno**: Configuración segura sin hardcoding
-- **Usuario No-Root**: Container ejecuta con usuario limitado
+### Implemented Measures
+- **Security Headers**: CSP, X-Frame-Options, etc.
+- **Dependency Audit**: npm audit in CI/CD
+- **Code Analysis**: njsscan for vulnerabilities
+- **Environment Variables**: Secure configuration without hardcoding
+- **Non-Root User**: Container runs with limited user
 
-## 📊 Rendimiento
+## 📊 Performance
 
-### Optimizaciones
-- **Code Splitting**: Carga bajo demanda
-- **Tree Shaking**: Eliminación de código no usado
-- **Lazy Loading**: Carga diferida de componentes
-- **Image Optimization**: Soporte para base64 y formatos optimizados
-- **Caching**: Estrategias de cache para assets estáticos
+### Optimizations
+- **Code Splitting**: On-demand loading
+- **Tree Shaking**: Removal of unused code
+- **Lazy Loading**: Deferred component loading
+- **Image Optimization**: Base64 support and optimized formats
+- **Caching**: Static asset caching strategies
 
-### Métricas de Build
-- **Bundle Size**: ~1.3MB (minificado)
+### Build Metrics
+- **Bundle Size**: ~1.3MB (minified)
 - **Gzip Size**: ~314KB
 - **Build Time**: ~2.5s
 
-## 🤝 Contribución
+## 🤝 Contributing
 
-### Guías de Desarrollo
-1. Seguir las convenciones de TypeScript
-2. Usar ESLint para mantener consistencia
-3. Escribir tests para nuevas funcionalidades críticas
-4. Documentar cambios significativos
-5. Mantener responsive design en todas las vistas
+### Development Guidelines
+1. Follow TypeScript conventions
+2. Use ESLint to maintain consistency
+3. Write tests for new critical functionality
+4. Document significant changes
+5. Maintain responsive design in all views
 
-### Proceso de PR
-1. Fork del repositorio
-2. Crear branch feature/descripcion
-3. Desarrollar con tests apropiados
-4. Ejecutar `npm run lint` y `npm run build`
-5. Crear Pull Request con descripción detallada
+### PR Process
+1. Fork the repository
+2. Create feature/description branch
+3. Develop with appropriate tests
+4. Run `npm run lint` and `npm run build`
+5. Create Pull Request with detailed description
 
-## 📞 Soporte
+## 📞 Support
 
-Para problemas o preguntas:
-1. Revisar la documentación
-2. Buscar en issues existentes
-3. Crear un nuevo issue con detalles completos
+For issues or questions:
+1. Check the documentation
+2. Search existing issues
+3. Create a new issue with complete details
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto es privado. Todos los derechos reservados.
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Construido con ❤️ usando React + TypeScript + Tailwind CSS**
+**Built with ❤️ using React + TypeScript + Tailwind CSS**
+
+[![Deploy to Coolify](https://img.shields.io/badge/Deploy%20to-Coolify-blue?style=for-the-badge)](https://coolify.io)
+[![React](https://img.shields.io/badge/React-18.3.1-blue?style=for-the-badge&logo=react)](https://reactjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.10-blue?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com)
