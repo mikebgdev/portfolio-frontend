@@ -40,23 +40,21 @@ RUN npm run build
 # Production image with nginx
 FROM nginx:1.25-alpine AS runner
 
-# Create nginx user and set permissions
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nextjs -u 1001 -G nodejs
+# Install curl for healthcheck
+RUN apk add --no-cache curl
 
 # Copy custom nginx configuration
-COPY --chown=nextjs:nodejs docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy built application
-COPY --from=builder --chown=nextjs:nodejs /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Create necessary directories with proper permissions
-RUN mkdir -p /var/cache/nginx /var/run /var/log/nginx && \
-    chown -R nextjs:nodejs /var/cache/nginx /var/run /var/log/nginx /usr/share/nginx/html && \
-    chmod -R 755 /usr/share/nginx/html
+# Set proper permissions for nginx
+RUN chmod -R 755 /usr/share/nginx/html
 
-# Switch to non-root user
-USER nextjs
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
 
 # Expose port
 EXPOSE 8080
