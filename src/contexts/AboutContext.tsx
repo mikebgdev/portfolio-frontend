@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { aboutService } from '@/services/api';
 import { ProcessedAboutData, ContactInfo, ProcessedHeroData } from '@/types/api';
 import { useTranslation } from 'react-i18next';
+import { processTextContent } from '@/utils';
 
 interface AboutContextType {
   aboutData: ProcessedAboutData | null;
@@ -34,13 +35,8 @@ export const AboutProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         const jobTitle = currentLang === 'es' ? data.job_title_es : data.job_title_en;
         const heroDescription = currentLang === 'es' ? data.hero_description_es : data.hero_description_en;
         
-        // Process bio - handle different paragraph formats
-        const bioArray = bio
-          .replace(/<br\s*\/?>/gi, '\n') // Convert <br> tags to line breaks
-          .replace(/\\n/g, '\n') // Convert escaped \n to actual line breaks
-          .split(/\n\s*\n/) // Split on double line breaks (paragraph breaks)
-          .map(p => p.replace(/\n/g, ' ').trim()) // Replace single line breaks with spaces within paragraphs
-          .filter(p => p.length > 0);
+        // Process bio using utility function
+        const bioArray = processTextContent(bio);
         
         const processedAboutData: ProcessedAboutData = {
           full_name: `${data.name} ${data.last_name}`,

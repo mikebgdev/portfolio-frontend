@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { siteConfigService, aboutService, skillsService, experienceService, projectsService, educationService, contactService } from '@/services/api';
-import { SiteConfig, AboutProfile, ProcessedAboutData, ProcessedHeroData, ContactInfo, SkillsResponse, ExperienceResponse, ProcessedExperienceItem, ProjectsResponse, ProcessedProjectItem, EducationResponse, ProcessedEducationItem, ContactResponse, ProcessedContactData } from '@/types/api';
+import { SiteConfig, AboutProfile, ProcessedAboutData, ProcessedHeroData, ContactInfo, SkillsResponse, ExperienceResponse, ProcessedExperienceItem, ProjectsResponse, ProcessedProjectItem, EducationResponse, ProcessedEducationItem, ContactResponse, ProcessedContactData, SocialNetwork } from '@/types/api';
 import { useTranslation } from 'react-i18next';
+import { processTextContent, processDescription, processTags, formatPeriod } from '@/utils';
 
 // Hook for Site Configuration
 export function useSiteConfig() {
@@ -49,13 +50,8 @@ export function useAboutData() {
         const bio = currentLang === 'es' ? data.bio_es : data.bio_en;
         const jobTitle = currentLang === 'es' ? data.job_title_es : data.job_title_en;
         
-        // Process bio - handle different paragraph formats
-        const bioArray = bio
-          .replace(/<br\s*\/?>/gi, '\n') // Convert <br> tags to line breaks
-          .replace(/\\n/g, '\n') // Convert escaped \n to actual line breaks
-          .split(/\n\s*\n/) // Split on double line breaks (paragraph breaks)
-          .map(p => p.replace(/\n/g, ' ').trim()) // Replace single line breaks with spaces within paragraphs
-          .filter(p => p.length > 0);
+        // Process bio using utility function
+        const bioArray = processTextContent(bio);
         
         const processedData: ProcessedAboutData = {
           full_name: `${data.name} ${data.last_name}`,
@@ -189,42 +185,15 @@ export function useExperience() {
             const position = currentLang === 'es' ? (item.position_es || item.position_en) : (item.position_en || item.position_es);
             const description = currentLang === 'es' ? (item.description_es || item.description_en) : (item.description_en || item.description_es);
             
-            // Process description into array of sentences/paragraphs
-            const descriptionArray = description && description.trim()
-              ? description
-                  .replace(/<br\s*\/?>/gi, '\n')
-                  .replace(/\\n/g, '\n')
-                  .split(/[.\n]/)
-                  .map(sentence => sentence.trim())
-                  .filter(sentence => sentence.length > 0)
-              : [];
+            // Process description using utility function
+            const descriptionArray = processDescription(description);
 
-            // Format dates (start_date and end_date are YYYY/MM/DD strings)
-            let period = '';
-            try {
-              // Convert YYYY/MM/DD to YYYY-MM-DD format for proper Date parsing
-              const formattedStartDate = item.start_date.replace(/\//g, '-');
-              const formattedEndDate = item.end_date ? item.end_date.replace(/\//g, '-') : null;
-              
-              const startDate = new Date(formattedStartDate + 'T00:00:00');
-              const endDate = formattedEndDate ? new Date(formattedEndDate + 'T00:00:00') : null;
-              
-              const formatDate = (date: Date) => {
-                if (isNaN(date.getTime())) {
-                  return 'Invalid Date';
-                }
-                return date.toLocaleDateString(currentLang === 'es' ? 'es-ES' : 'en-US', {
-                  month: 'long',
-                  year: 'numeric'
-                });
-              };
-
-              period = endDate 
-                ? `${formatDate(startDate)} - ${formatDate(endDate)}`
-                : `${formatDate(startDate)} - ${currentLang === 'es' ? 'Presente' : 'Present'}`;
-            } catch (dateError) {
-              period = `${item.start_date} - ${item.end_date || (currentLang === 'es' ? 'Presente' : 'Present')}`;
-            }
+            // Format dates using utility function
+            const period = formatPeriod(
+              item.start_date,
+              item.end_date,
+              currentLang === 'es' ? 'es-ES' : 'en-US'
+            );
 
             return {
               title: position,
@@ -278,13 +247,8 @@ export function useProjects() {
             const title = currentLang === 'es' ? (item.title_es || item.title_en) : (item.title_en || item.title_es);
             const description = currentLang === 'es' ? (item.description_es || item.description_en) : (item.description_en || item.description_es);
             
-            // Process tags - handle both array and comma-separated string
-            let tags: string[] = [];
-            if (Array.isArray(item.technologies)) {
-              tags = item.technologies;
-            } else if (typeof item.technologies === 'string' && item.technologies.trim()) {
-              tags = item.technologies.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
-            }
+            // Process tags using utility function
+            const tags = processTags(item.technologies);
 
             return {
               title: title,
@@ -338,32 +302,12 @@ export function useEducation() {
           .map(item => {
             const degree = currentLang === 'es' ? (item.degree_es || item.degree_en) : (item.degree_en || item.degree_es);
             
-            // Format dates (start_date and end_date are YYYY/MM/DD strings)
-            let period = '';
-            try {
-              // Convert YYYY/MM/DD to YYYY-MM-DD format for proper Date parsing
-              const formattedStartDate = item.start_date.replace(/\//g, '-');
-              const formattedEndDate = item.end_date ? item.end_date.replace(/\//g, '-') : null;
-              
-              const startDate = new Date(formattedStartDate + 'T00:00:00');
-              const endDate = formattedEndDate ? new Date(formattedEndDate + 'T00:00:00') : null;
-              
-              const formatDate = (date: Date) => {
-                if (isNaN(date.getTime())) {
-                  return 'Invalid Date';
-                }
-                return date.toLocaleDateString(currentLang === 'es' ? 'es-ES' : 'en-US', {
-                  month: 'long',
-                  year: 'numeric'
-                });
-              };
-
-              period = endDate 
-                ? `${formatDate(startDate)} - ${formatDate(endDate)}`
-                : `${formatDate(startDate)} - ${currentLang === 'es' ? 'Presente' : 'Present'}`;
-            } catch (dateError) {
-              period = `${item.start_date} - ${item.end_date || (currentLang === 'es' ? 'Presente' : 'Present')}`;
-            }
+            // Format dates using utility function
+            const period = formatPeriod(
+              item.start_date,
+              item.end_date,
+              currentLang === 'es' ? 'es-ES' : 'en-US'
+            );
             
             return {
               degree: degree,
