@@ -6,14 +6,11 @@ export default [
     ignores: [
       'dist',
       'node_modules',
-      '*.config.*',
-      'coverage',
-      // Ignore all TypeScript files for now since we don't have TS parser
-      '**/*.{ts,tsx}'
+      'coverage'
     ] 
   },
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{js,jsx,mjs}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: {
