@@ -44,13 +44,9 @@ async function fetchApi<T>(endpoint: string, retryCount = 0): Promise<T> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.TIMEOUT);
 
+    // Use simple request to avoid preflight OPTIONS
     const response = await fetch(url, {
       method: 'GET',
-      mode: 'cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
       signal: controller.signal,
     });
 
