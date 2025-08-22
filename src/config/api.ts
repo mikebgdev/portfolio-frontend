@@ -5,7 +5,8 @@
 
 // Environment variables with fallbacks
 const getEnvVar = (key: string, fallback: string): string => {
-  return import.meta.env[key] || fallback;
+  const value = import.meta.env[key];
+  return value || fallback;
 };
 
 export const API_CONFIG = {

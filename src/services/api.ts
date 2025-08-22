@@ -67,8 +67,8 @@ async function fetchApi<T>(endpoint: string, retryCount = 0): Promise<T> {
     const data = await response.json();
     
     // Log successful API calls in development
-    if (API_CONFIG.BASE_URL.includes('localhost') || import.meta.env.DEV) {
-      console.debug(`✅ API Success: ${endpoint}`, { status: response.status });
+    if (import.meta.env.DEV) {
+      console.debug(`✅ API Success: ${url}`, { status: response.status });
     }
     
     return data;
