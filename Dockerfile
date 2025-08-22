@@ -55,10 +55,6 @@ RUN mkdir -p /var/cache/nginx /var/run /var/log/nginx && \
     chown -R nextjs:nodejs /var/cache/nginx /var/run /var/log/nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8080/health || exit 1
-
 # Switch to non-root user
 USER nextjs
 
